@@ -9,6 +9,7 @@ class ProductManager {
   async addProduct(product) {
     if (
       !product.title ||
+      !product.price ||
       !product.description ||
       !product.code ||
       !product.status ||
@@ -26,12 +27,10 @@ class ProductManager {
       product.id = this.nextId++;
       products.push(product);
       await fs.promises.writeFile(this.path, JSON.stringify(products));
-      return products;
     } catch {
       product.id = this.nextId++;
       this.products.push(product);
       await fs.promises.appendFile(this.path, JSON.stringify([product]) + "\n");
-      return products;
     }
   }
 
@@ -89,7 +88,7 @@ class ProductManager {
     try {
       const productsJSON = await fs.promises.readFile(this.path, "utf-8");
       let productsParsed = JSON.parse(productsJSON);
-      const productIndex = productsParsed.findIndex((p) => p.id === id);
+      const productIndex = productsParsed.findIndex((p) => p.id == id);
       if (productIndex === -1) {
         throw new Error("Producto no encontrado");
       }
