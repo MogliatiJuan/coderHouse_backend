@@ -1,11 +1,23 @@
 import express from "express";
+import handlebars from "express-handlebars";
+import { Server } from "socket.io";
+import __dirname from "./dirname.js";
 import router from "./routes/index.js";
+import { ProductManager } from "./controllers/index.js";
 
 const app = express();
 const PORT = 8080;
 
+const productManager = new ProductManager();
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.engine("handlebars", handlebars.engine());
+app.set("views", __dirname + "/views");
+app.set("view engine", "handlebars");
+
+app.use(express.static(__dirname + "/public"));
 
 app.use("/api", router);
 
