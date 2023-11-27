@@ -12,6 +12,14 @@ class CartManager {
     }
   }
 
+  async getCartAll() {
+    try {
+      return await cartsMongo.find();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async getCart(id) {
     try {
       return await cartsMongo.findOne({ _id: id });
