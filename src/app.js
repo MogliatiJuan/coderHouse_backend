@@ -1,11 +1,12 @@
 import express from "express";
 import handlebars from "express-handlebars";
 import mongoose from "mongoose";
-//import { Server } from "socket.io";
-//import { ProductManager } from "./dao/filesystem/products/index.js";
+import { Server } from "socket.io";
+//import ProductManager from "./dao/filesystem/products/index.js";
 import __dirname from "./dirname.js";
 import router from "./routes/index.js";
 import * as dotenv from "dotenv";
+import MessageManager from "./dao/db/messages/index.js";
 
 dotenv.config();
 
@@ -23,8 +24,53 @@ app.use(express.static(__dirname + "/public"));
 
 app.use("/api", router);
 
-app.listen(PORT, () => {
+const httpServer = app.listen(PORT, () => {
   console.log(`Server PORT: ${PORT}`);
+});
+
+//Socket
+//const productManager = new ProductManager();
+const messageManager = new MessageManager();
+
+const socketServer = new Server(httpServer);
+
+socketServer.on("connection", (socket) => {
+  console.log("Nuevo cliente conectado");
+
+  socket.on("dataUser", async (data) => {
+    try {
+      await messageManager.createData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  //socket.on("products", async () => {
+  //  try {
+  //    const products = await productManager.getProducts();
+  //    socket.emit("products", products);
+  //  } catch (error) {
+  //    console.log(error);
+  //  }
+  //});
+
+  //socket.on("addProduct", async (product) => {
+  //  try {
+  //    const products = await productManager.addProduct(product);
+  //    socket.emit("products", products);
+  //  } catch (error) {
+  //    console.log(error);
+  //  }
+  //});
+
+  //socket.on("deleteProduct", async (id) => {
+  //  try {
+  //    const products = await productManager.deleteProduct(id);
+  //    socket.emit("products", products);
+  //  } catch (error) {
+  //    console.log(error);
+  //  }
+  //});
 });
 
 //Database MongoDB
@@ -40,42 +86,3 @@ const connectMongoDB = async () => {
 };
 
 connectMongoDB();
-
-//Socket
-//const productManager = new ProductManager();
-//const httpServer = app.listen(PORT, () => {
-//  console.log(`Server PORT: ${PORT}`);
-//});
-
-//const socketServer = new Server(httpServer);
-
-//socketServer.on("connection", (socket) => {
-//  console.log("Nuevo cliente conectado");
-
-//  socket.on("products", async () => {
-//    try {
-//      const products = await productManager.getProducts();
-//      socket.emit("products", products);
-//    } catch (error) {
-//      console.log(error);
-//    }
-//  });
-
-//  socket.on("addProduct", async (product) => {
-//    try {
-//      const products = await productManager.addProduct(product);
-//      socket.emit("products", products);
-//    } catch (error) {
-//      console.log(error);
-//    }
-//  });
-
-//  socket.on("deleteProduct", async (id) => {
-//    try {
-//      const products = await productManager.deleteProduct(id);
-//      socket.emit("products", products);
-//    } catch (error) {
-//      console.log(error);
-//    }
-//  });
-//});
