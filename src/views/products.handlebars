@@ -1,0 +1,24 @@
+<h1>Todos los productos</h1>
+<a href="http://localhost:8080/api/views/carts/656fc3c70da0ff84e5f8001b">Ir al carrito</a>
+
+<ul>
+	{{#each products.docs}}
+		<li>
+				<h2>{{this.title}}</h2>
+				<p>{{this.description}} <p/>
+                <p>Stock: {{this.stock}}</p>
+				<p>${{this.price}}</p>
+			<form method="POST" action="http://localhost:8080/api/carts/656fc3c70da0ff84e5f8001b/product/{{this.id}}" >
+				<input type="hidden" name="productId" value="{{this.id}}" />
+				<button type="submit">Agregar al carrito</button>
+			</form>
+		</li>
+	{{/each}}
+</ul>
+<a>{{products.page}}</a>
+{{#if products.hasPrevPage}}
+<a href="http://localhost:8080/api/views/products?page={{products.prevPage}}">Prev Page</a>
+{{/if}}
+{{#if products.hasNextPage}}
+<a href="http://localhost:8080/api/views/products?page={{products.nextPage}}">Next Page</a>
+{{/if}}

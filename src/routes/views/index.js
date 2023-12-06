@@ -31,7 +31,7 @@ router.get("/products", async (req, res) => {
 });
 
 router.get("/carts/:cid", async (req, res) => {
-  // probar :cid = 644d9bd2ec8f54b9724acf3c
+  // probar :cid = 656fc3c70da0ff84e5f8001b
   try {
     const { cid } = req.params;
     let cart = await cartManager.getCartById(cid);
