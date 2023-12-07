@@ -5,6 +5,7 @@ import cartRouter from "./carts/db/index.js";
 import productRouter from "./products/db/index.js";
 import viewRouter from "./views/index.js";
 import messageRouter from "./messages/index.js";
+import sessionsRouter from "./sessions/index.js";
 
 const router = new Router();
 
@@ -12,5 +13,6 @@ router.use("/products", productRouter);
 router.use("/carts", cartRouter);
 router.use("/views", viewRouter);
 router.use("/chat", messageRouter);
+router.use("/session", sessionsRouter);
 
 export default router;
