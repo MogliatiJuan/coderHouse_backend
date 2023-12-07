@@ -7,8 +7,12 @@ import __dirname from "./dirname.js";
 import router from "./routes/index.js";
 import * as dotenv from "dotenv";
 import MessageManager from "./dao/db/messages/index.js";
+import session from "express-session";
+import mongoStore from "connect-mongo";
 
 dotenv.config();
+
+const DB = `mongodb+srv://papu:${process.env.DB_PASSWORD}@ecommerce.6g4ke0l.mongodb.net/ecommerce?retryWrites=true&w=majority`;
 
 const app = express();
 const PORT = 8080;
@@ -16,6 +20,18 @@ const PORT = 8080;
 app.set("port", process.env.PORT || 8080);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  session({
+    store: mongoStore.create({
+      mongoUrl: DB,
+      mongoOptions: {},
+      ttl: 240,
+    }),
+    secret: "secretPassword",
+    resave: true, // cada vez que se actualiza la pagina se resetea el ttl
+    saveUninitialized: true,
+  })
+);
 
 handlebars.create({ allowProtoMethodsByDefault: true });
 app.engine("handlebars", handlebars.engine());
@@ -75,7 +91,6 @@ socketServer.on("connection", (socket) => {
 });
 
 //Database MongoDB
-const DB = `mongodb+srv://papu:${process.env.DB_PASSWORD}@ecommerce.6g4ke0l.mongodb.net/ecommerce?retryWrites=true&w=majority`;
 const connectMongoDB = async () => {
   try {
     await mongoose.connect(DB);
