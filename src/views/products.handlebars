@@ -1,6 +1,12 @@
 <h1>Todos los productos</h1>
-<a href="http://localhost:8080/api/views/carts/656fc3c70da0ff84e5f8001b">Ir al carrito</a>
 
+
+<div>
+  <h3>Bienvenido {{user.nombre}} {{user.apellido}}</h3>
+  <span>Tu rol es: <b>{{user.rol}}</b></span>
+  <p>Deseas visitar tu perfil? <a href="/api/views/profile">Dirígete desde aquí</a></p>
+  <p>Quieres visualizar tu carrito de compras? <a href="http://localhost:8080/api/views/carts/656fc3c70da0ff84e5f8001b">Ir al carrito</a> </p>
+</div>
 <ul>
 	{{#each products.docs}}
 		<li>

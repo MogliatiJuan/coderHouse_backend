@@ -1,0 +1,20 @@
+<section>
+  <h1>Profile</h1>
+  <div>
+    <h3>Estos son tus datos</h3>
+    <p>Nombre: {{user.nombre}}</p>
+    <p>Apellido: {{user.apellido}}</p>
+    <p>Email: {{user.email}}</p>
+    <p>Edad: {{user.edad}}</p>
+    <p>Rol: {{user.rol}}</p>
+  </div>
+
+  <form method="GET" action="/api/session/logout">
+    <span>Deseas cerrar sesión?</span>
+    <input type="submit" value="Cerrar Sesion" />
+  </form>
+
+  <div>
+    <a href="/api/views/products">Volver hacia el menu de productos</a>
+  </div>
+</section>
