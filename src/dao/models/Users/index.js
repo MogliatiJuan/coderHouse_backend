@@ -4,9 +4,9 @@ const collection = "users";
 
 const schema = new mongoose.Schema(
   {
-    firstName: String,
+    firstName: { type: String, required: true },
     lastName: String,
-    email: { type: String, unique: true },
+    email: { type: String, unique: true, required: true },
     password: String,
     role: { type: String, default: "user" },
     age: Number,
