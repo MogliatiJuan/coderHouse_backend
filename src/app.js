@@ -2,13 +2,15 @@ import express from "express";
 import handlebars from "express-handlebars";
 import mongoose from "mongoose";
 import { Server } from "socket.io";
+import session from "express-session";
+import mongoStore from "connect-mongo";
+import passport from "passport";
+import * as dotenv from "dotenv";
 //import ProductManager from "./dao/filesystem/products/index.js";
 import __dirname from "./dirname.js";
 import router from "./routes/index.js";
-import * as dotenv from "dotenv";
 import MessageManager from "./dao/db/messages/index.js";
-import session from "express-session";
-import mongoStore from "connect-mongo";
+import { passportStrategy } from "./config/passport.js";
 
 dotenv.config();
 
@@ -17,6 +19,7 @@ const DB = `mongodb+srv://papu:${process.env.DB_PASSWORD}@ecommerce.6g4ke0l.mong
 const app = express();
 const PORT = 8080;
 
+passportStrategy();
 app.set("port", process.env.PORT || 8080);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +35,8 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
 
 handlebars.create({ allowProtoMethodsByDefault: true });
 app.engine("handlebars", handlebars.engine());

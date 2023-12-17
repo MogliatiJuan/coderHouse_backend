@@ -18,13 +18,13 @@ router.get("/realtimeproducts", async (_request, response) => {
 
 router.get("/products", async (req, res) => {
   try {
-    if (!req.session.user) return res.redirect("/api/views/login");
+    if (!req.user) return res.redirect("/api/views/login");
     const { page = 1, limit = 10 } = req.query;
     const products = await productsMongo.paginate(
       {},
       { page, limit, lean: true }
     );
-    res.render("products", { products, user: req.session?.user });
+    res.render("products", { products, user: req.user.toJSON() });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching products");
@@ -34,7 +34,7 @@ router.get("/products", async (req, res) => {
 router.get("/carts/:cid", async (req, res) => {
   // probar :cid = 656fc3c70da0ff84e5f8001b
   try {
-    if (!req.session.user) return res.redirect("/api/views/login");
+    if (!req.user) return res.redirect("/api/views/login");
     const { cid } = req.params;
     let cart = await cartManager.getCartById(cid);
     res.render("carts", { cart: cart.toJSON() });
@@ -47,8 +47,8 @@ export default router;
 
 router.get("/profile", async (req, res) => {
   try {
-    if (!req.session.user) return res.redirect("/api/views/login");
-    res.render("profile", { user: req.session.user });
+    if (!req.user) return res.redirect("/api/views/login");
+    res.render("profile", { user: req.user.toJSON() });
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: error });
@@ -57,7 +57,7 @@ router.get("/profile", async (req, res) => {
 
 router.get("/login", async (req, res) => {
   try {
-    if (req.session.user) return res.redirect("/api/views/products");
+    if (req.user) return res.redirect("/api/views/products");
     res.render("login", {});
   } catch (error) {
     console.log(error);
