@@ -6,6 +6,7 @@ import session from "express-session";
 import mongoStore from "connect-mongo";
 import passport from "passport";
 import * as dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 //import ProductManager from "./dao/filesystem/products/index.js";
 import __dirname from "./dirname.js";
 import router from "./routes/index.js";
@@ -18,8 +19,7 @@ const DB = `mongodb+srv://papu:${process.env.DB_PASSWORD}@ecommerce.6g4ke0l.mong
 
 const app = express();
 const PORT = 8080;
-
-passportStrategy();
+app.use(cookieParser());
 app.set("port", process.env.PORT || 8080);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -35,8 +35,9 @@ app.use(
     saveUninitialized: true,
   })
 );
+passportStrategy();
 app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.session());
 
 handlebars.create({ allowProtoMethodsByDefault: true });
 app.engine("handlebars", handlebars.engine());
