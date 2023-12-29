@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { CartManagerMongo, ProductManager } from "../../dao/index.js";
 import { productsMongo } from "../../dao/models/index.js";
+import passport from "passport";
 
 const router = Router();
 const productManager = new ProductManager();
@@ -16,20 +17,24 @@ router.get("/realtimeproducts", async (_request, response) => {
   response.render("realTimeProducts", { products });
 });
 
-router.get("/products", async (req, res) => {
-  try {
-    if (!req.cookies.token) return res.redirect("/api/views/login");
-    const { page = 1, limit = 10 } = req.query;
-    const products = await productsMongo.paginate(
-      {},
-      { page, limit, lean: true }
-    );
-    res.render("products", { products, user: req.cookies.token });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error fetching products");
+router.get(
+  "/products",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      if (!req.cookies.token) return res.redirect("/api/views/login");
+      const { page = 1, limit = 10 } = req.query;
+      const products = await productsMongo.paginate(
+        {},
+        { page, limit, lean: true }
+      );
+      res.render("products", { products, user: req.user });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Error fetching products");
+    }
   }
-});
+);
 
 router.get("/carts/:cid", async (req, res) => {
   // probar :cid = 656fc3c70da0ff84e5f8001b
@@ -45,15 +50,19 @@ router.get("/carts/:cid", async (req, res) => {
 });
 export default router;
 
-router.get("/profile", async (req, res) => {
-  try {
-    if (!req.cookies.token) return res.redirect("/api/views/login");
-    res.render("profile", { user: req.cookies.token });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ message: error });
+router.get(
+  "/profile",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      if (!req.cookies.token) return res.redirect("/api/views/login");
+      res.render("profile", { user: req.user });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({ message: error });
+    }
   }
-});
+);
 
 router.get("/login", async (req, res) => {
   try {
