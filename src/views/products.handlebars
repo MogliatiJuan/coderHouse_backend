@@ -8,18 +8,50 @@
   <p>Quieres visualizar tu carrito de compras? <a href="http://localhost:8080/api/views/carts/656fc3c70da0ff84e5f8001b">Ir al carrito</a> </p>
 </div>
 <ul>
+
+<p>Como administrador, puede agregar, editar o eliminar productos de la lista.</p>
+
+  {{#if user.user}}
 	{{#each products.docs}}
 		<li>
 				<h2>{{this.title}}</h2>
 				<p>{{this.description}} <p/>
                 <p>Stock: {{this.stock}}</p>
 				<p>${{this.price}}</p>
-			<form method="POST" action="http://localhost:8080/api/carts/656fc3c70da0ff84e5f8001b/product/{{this.id}}" >
+      <form method="POST" action="http://localhost:8080/api/carts/656fc3c70da0ff84e5f8001b/product/{{this.id}}" >
 				<input type="hidden" name="productId" value="{{this.id}}" />
 				<button type="submit">Agregar al carrito</button>
 			</form>
 		</li>
 	{{/each}}
+
+  {{/if}}
+
+    {{#if user.admin}}
+
+  <form id="loginForm" method="POST" action="/api/sessions/login">
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" placeholder="Email" />
+    <label for="password">Contraseña</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Password"
+    />
+    <input type="submit" value="Login" />
+  </form>
+
+
+    {{#each products.docs}}
+		<li>
+				<h2>{{this.title}}</h2>
+				<p>{{this.description}} <p/>
+                <p>Stock: {{this.stock}}</p>
+				<p>${{this.price}}</p>
+		</li>
+	{{/each}}
+  {{/if}}
 </ul>
 <a>{{products.page}}</a>
 {{#if products.hasPrevPage}}

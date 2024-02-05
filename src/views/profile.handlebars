@@ -9,10 +9,12 @@
     <p>Rol: {{user.role}}</p>
   </div>
 
-  <form method="GET" action="/api/session/logout">
+  <form method="GET" action="/api/sessions/logout">
     <span>Deseas cerrar sesión?</span>
     <input type="submit" value="Cerrar Sesion" />
   </form>
+
+  <a href="/api/sessions/current">Current</a>
 
   <div>
     <a href="/api/views/products">Volver hacia el menu de productos</a>

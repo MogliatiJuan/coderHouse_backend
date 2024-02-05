@@ -1,9 +1,14 @@
 import { Router } from "express";
-import { login, logout, register, profile } from "../../dao/index.js";
+import { logout, profile } from "../../dao/index.js";
 import passport from "passport";
-import { generateToken } from "../../helpers/jwt.js";
+import {
+  authMiddleware,
+  authRolesMiddleware,
+  generateToken,
+} from "../../helpers/jwt.js";
 import { Users } from "../../dao/models/index.js";
 import bcrypt from "bcrypt";
+import { CurrentDTO } from "../../dto/current.js";
 
 const router = new Router();
 
@@ -55,9 +60,10 @@ router.get(
 );
 router.get(
   "/current",
-  passport.authenticate("jwt", { session: false }),
+  authMiddleware("jwt"),
+  authRolesMiddleware("admin"),
   (req, res) => {
-    res.send(req.user);
+    res.send(new CurrentDTO(req.user));
   }
 );
 

@@ -38,9 +38,12 @@ export const logout = async (req, res) => {
           error: error,
         });
       }
+      res.clearCookie("token");
       res.redirect("/api/views/login");
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const register = async (req, res) => {

@@ -2,6 +2,7 @@ import { Router } from "express";
 import { CartManagerMongo, ProductManager } from "../../dao/index.js";
 import { productsMongo } from "../../dao/models/index.js";
 import passport from "passport";
+import { authMiddleware } from "../../helpers/jwt.js";
 
 const router = Router();
 const productManager = new ProductManager();
@@ -28,6 +29,13 @@ router.get(
         {},
         { page, limit, lean: true }
       );
+
+      if (req.user.role === "user") {
+        req.user.user = true;
+      } else {
+        req.user.admin = true;
+      }
+
       res.render("products", { products, user: req.user });
     } catch (error) {
       console.error(error);
@@ -43,7 +51,7 @@ router.get("/carts/:cid", async (req, res) => {
     const { cid } = req.params;
     let cart = await cartManager.getCartById(cid);
     res.render("carts", { cart: cart.toJSON() });
-  } catch {
+  } catch (error) {
     console.log(error);
     res.status(500).send({ message: error });
   }
@@ -52,6 +60,7 @@ export default router;
 
 router.get(
   "/profile",
+  authMiddleware("jwt"),
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
