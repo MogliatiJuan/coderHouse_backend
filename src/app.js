@@ -5,17 +5,12 @@ import { Server } from "socket.io";
 import session from "express-session";
 import mongoStore from "connect-mongo";
 import passport from "passport";
-import * as dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-//import ProductManager from "./dao/filesystem/products/index.js";
 import __dirname from "./dirname.js";
 import router from "./routes/index.js";
 import MessageManager from "./dao/db/messages/index.js";
 import { passportStrategy } from "./config/passport.js";
-
-dotenv.config();
-
-const DB = `mongodb+srv://papu:${process.env.DB_PASSWORD}@ecommerce.6g4ke0l.mongodb.net/ecommerce?retryWrites=true&w=majority`;
+import config from "./config/config.js";
 
 const app = express();
 const PORT = 8080;
@@ -26,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     store: mongoStore.create({
-      mongoUrl: DB,
+      mongoUrl: config.DB_URL,
       mongoOptions: {},
       ttl: 240,
     }),
@@ -46,6 +41,12 @@ app.set("view engine", "handlebars");
 app.use(express.static(__dirname + "/public"));
 
 app.use("/api", router);
+
+app.use((error, req, res, next) => {
+  const message = `Hubo un error en la petición`;
+  const detail = `${error.message}`;
+  res.status(500).json({ message, detail });
+});
 
 const httpServer = app.listen(PORT, () => {
   console.log(`Server PORT: ${PORT}`);
@@ -97,14 +98,16 @@ socketServer.on("connection", (socket) => {
 });
 
 //Database MongoDB
-const connectMongoDB = async () => {
-  try {
-    await mongoose.connect(DB);
-    console.log("Conectado a MongoDB con Mongoose");
-  } catch (error) {
-    console.log("No se pudo conectar a la BD con Mongoose");
-    process.exit();
-  }
-};
+if (config.PERSISTENCE === "mongoDB") {
+  const connectMongoDB = async () => {
+    try {
+      await mongoose.connect(config.DB_URL);
+      console.log("Conectado a MongoDB con Mongoose");
+    } catch (error) {
+      console.log("No se pudo conectar a la BD con Mongoose");
+      process.exit();
+    }
+  };
 
-connectMongoDB();
+  connectMongoDB();
+}

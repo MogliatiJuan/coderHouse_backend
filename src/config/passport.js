@@ -4,9 +4,6 @@ import { Strategy as GithubStrategy } from "passport-github2";
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 import { Users } from "../dao/models/index.js";
 import bcrypt from "bcrypt";
-import * as dotenv from "dotenv";
-
-dotenv.config();
 
 const cookieExtractor = (req) => {
   let token;
@@ -115,5 +112,3 @@ export const passportStrategy = () => {
   //  done(null, user);
   //});
 };
-
-//1:26:30

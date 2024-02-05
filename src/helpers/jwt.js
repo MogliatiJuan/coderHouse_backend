@@ -1,10 +1,9 @@
-import * as dotenv from "dotenv";
 import jwt from "jsonwebtoken";
-dotenv.config();
+import passport from "passport";
 
 export const generateToken = (user) => {
-  const { id, name, email, firstName, lastName, role, age } = user;
-  const payload = { id, name, email, firstName, lastName, role, age };
+  const { id, email, firstName, lastName, role, age } = user;
+  const payload = { id, email, firstName, lastName, role, age };
   return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
 };
 
@@ -17,4 +16,25 @@ export const validateToken = (token) => {
       resolve(payload);
     });
   });
+};
+
+export const authMiddleware = (strategy) => (req, res, next) => {
+  passport.authenticate(strategy, function (error, payload, info) {
+    if (error) return next(error);
+    if (!payload)
+      return res
+        .status(401)
+        .send({ message: info.message ? info.message : info.toString() });
+    req.user = payload;
+    next();
+  })(req, res, next);
+};
+
+export const authRolesMiddleware = (role) => (req, res, next) => {
+  if (!req.user) return res.status(401).send({ message: "Unauthorized" });
+
+  const { role: userRole } = req.user;
+  if (userRole !== role) return res.status(403).send({ message: "Forbidden" });
+
+  next();
 };
