@@ -1,10 +1,21 @@
 import fs from "fs";
 
-class CartManager {
+export default class CartsDAO {
   constructor() {
     this.id = 1;
     this.cartsArray = [];
     this.path = "./src/mocks/carts.json";
+  }
+
+  async getAll() {
+    try {
+      const cartsJSON = await fs.promises.readFile(this.path, "utf-8");
+      const carts = JSON.parse(cartsJSON);
+      return carts;
+    } catch (error) {
+      console.log(error);
+      throw new Error();
+    }
   }
 
   async createCart() {
@@ -65,5 +76,3 @@ class CartManager {
     }
   }
 }
-
-export default CartManager;
