@@ -8,55 +8,57 @@ const router = Router();
 const productManager = new ProductManager();
 const cartManager = new CartManagerMongo();
 
-router.get("/", async (_request, response) => {
+router.get("/", authMiddleware("jwt"), async (_request, response) => {
   const products = await productManager.getProducts();
   response.render("home", { products });
 });
 
-router.get("/realtimeproducts", async (_request, response) => {
-  const products = await productManager.getProducts();
-  response.render("realTimeProducts", { products });
-});
-
 router.get(
-  "/products",
-  passport.authenticate("jwt", { session: false }),
-  async (req, res) => {
-    try {
-      if (!req.cookies.token) return res.redirect("/api/views/login");
-      const { page = 1, limit = 10 } = req.query;
-      const products = await productsMongo.paginate(
-        {},
-        { page, limit, lean: true }
-      );
-
-      if (req.user.role === "user") {
-        req.user.user = true;
-      } else {
-        req.user.admin = true;
-      }
-
-      res.render("products", { products, user: req.user });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Error fetching products");
-    }
+  "/realtimeproducts",
+  authMiddleware("jwt"),
+  async (_request, response) => {
+    const products = await productManager.getProducts();
+    response.render("realTimeProducts", { products });
   }
 );
 
-router.get("/carts/:cid", async (req, res) => {
-  // probar :cid = 656fc3c70da0ff84e5f8001b
+router.get("/products", authMiddleware("jwt"), async (req, res) => {
+  try {
+    if (!req.cookies.token) return res.redirect("/api/views/login");
+    const { page = 1, limit = 10 } = req.query;
+    const products = await productsMongo.paginate(
+      {},
+      { page, limit, lean: true }
+    );
+
+    if (req.user.role === "user") {
+      req.user.user = true;
+    } else {
+      req.user.admin = true;
+    }
+    res.render("products", { products, user: req.user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error fetching products");
+  }
+});
+
+router.get("/carts/:cid", authMiddleware("jwt"), async (req, res) => {
   try {
     if (!req.cookies.token) return res.redirect("/api/views/login");
     const { cid } = req.params;
     let cart = await cartManager.getCartById(cid);
-    res.render("carts", { cart: cart.toJSON() });
+    let serializedProducts = JSON.stringify(cart?.products || []);
+    res.render("carts", {
+      cart: cart?.toJSON() || [],
+      email: req.user.email,
+      serializedProducts,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: error });
   }
 });
-export default router;
 
 router.get(
   "/profile",
@@ -91,3 +93,5 @@ router.get("/register", async (req, res) => {
     res.status(500).send({ message: error });
   }
 });
+
+export default router;
