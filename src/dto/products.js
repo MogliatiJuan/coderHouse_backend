@@ -23,7 +23,7 @@ export class ProductDTO {
     this.title = data?.title || null;
     this.description = data?.description || null;
     this.price = parseFloat(data?.price) || null;
-    this.stock = parseInt(data?.stocknull, 10) || null;
+    this.stock = parseInt(data?.stock, 10) || null;
     this.code = data?.code || null;
     this.category = data?.category || null;
     this.status = data?.status === 200 ? "Available" : "Not Available";

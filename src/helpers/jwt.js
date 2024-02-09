@@ -2,9 +2,9 @@ import jwt from "jsonwebtoken";
 import passport from "passport";
 
 export const generateToken = (user) => {
-  const { id, email, firstName, lastName, role, age } = user;
-  const payload = { id, email, firstName, lastName, role, age };
-  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
+  const { id, email, firstName, lastName, role, age, cart } = user;
+  const payload = { id, email, firstName, lastName, role, age, cart };
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "4h" });
 };
 
 export const validateToken = (token) => {
@@ -21,10 +21,7 @@ export const validateToken = (token) => {
 export const authMiddleware = (strategy) => (req, res, next) => {
   passport.authenticate(strategy, function (error, payload, info) {
     if (error) return next(error);
-    if (!payload)
-      return res
-        .status(401)
-        .send({ message: info.message ? info.message : info.toString() });
+    if (!payload) return res.redirect("/api/views/login");
     req.user = payload;
     next();
   })(req, res, next);
