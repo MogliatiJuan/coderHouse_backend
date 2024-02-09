@@ -41,6 +41,9 @@ app.set("view engine", "handlebars");
 app.use(express.static(__dirname + "/public"));
 
 app.use("/api", router);
+app.get("/", (req, res) => {
+  return res.send({ message: "Welcome to the API" });
+});
 
 app.use((error, req, res, next) => {
   const message = `Hubo un error en la petición`;
