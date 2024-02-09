@@ -5,20 +5,25 @@
   <h3>Bienvenido {{user.firstName}} {{user.lastName}}</h3>
   <span>Tu rol es: <b>{{user.role}}</b></span>
   <p>Deseas visitar tu perfil? <a href="/api/views/profile">Dirígete desde aquí</a></p>
-  <p>Quieres visualizar tu carrito de compras? <a href="http://localhost:8080/api/views/carts/656fc3c70da0ff84e5f8001b">Ir al carrito</a> </p>
+  <p>Quieres visualizar tu carrito de compras? <a href="http://localhost:8080/api/views/carts/{{user.cart}}">Ir al carrito</a> </p>
 </div>
 <ul>
+    {{#if user.user}}
+    <a href="/api/chat">Ingresa al chat <b>aquí!</b></a>
+  {{/if}}
 
+    {{#if user.admin}}
 <p>Como administrador, puede agregar, editar o eliminar productos de la lista.</p>
+    {{/if}}
 
   {{#if user.user}}
 	{{#each products.docs}}
 		<li>
 				<h2>{{this.title}}</h2>
 				<p>{{this.description}} <p/>
-                <p>Stock: {{this.stock}}</p>
+        <p>Stock: {{this.stock}}</p>
 				<p>${{this.price}}</p>
-      <form method="POST" action="http://localhost:8080/api/carts/656fc3c70da0ff84e5f8001b/product/{{this.id}}" >
+      <form method="POST" action="http://localhost:8080/api/carts/{{../user.cart}}/product/{{this.id}}" >
 				<input type="hidden" name="productId" value="{{this.id}}" />
 				<button type="submit">Agregar al carrito</button>
 			</form>
@@ -29,27 +34,21 @@
 
     {{#if user.admin}}
 
-  <form id="loginForm" method="POST" action="/api/sessions/login">
-    <label for="email">Email</label>
-    <input type="text" id="email" name="email" placeholder="Email" />
-    <label for="password">Contraseña</label>
-    <input
-      type="password"
-      id="password"
-      name="password"
-      placeholder="Password"
-    />
-    <input type="submit" value="Login" />
-  </form>
-
-
     {{#each products.docs}}
 		<li>
 				<h2>{{this.title}}</h2>
 				<p>{{this.description}} <p/>
-                <p>Stock: {{this.stock}}</p>
+        <p>Stock: {{this.stock}}</p>
 				<p>${{this.price}}</p>
 		</li>
+  <form class="editProductForm" data-id="{{this.id}}" method="POST" action="#">
+    <h4>Cambiar nombre del titulo del producto</h4>
+    <label for="title-{{this.id}}">Título</label>
+    <input type="text" id="title-{{this.id}}" name="title" placeholder="Titulo" />
+    <input type="submit" value="Cambiar" />
+</form>
+  <button class="deleteProductButton" data-id="{{this.id}}">Eliminar Producto</button>
+
 	{{/each}}
   {{/if}}
 </ul>
@@ -60,3 +59,74 @@
 {{#if products.hasNextPage}}
 <a href="http://localhost:8080/api/views/products?page={{products.nextPage}}">Next Page</a>
 {{/if}}
+
+<script>
+    document.addEventListener('submit', function(e) {
+        if (e.target.matches('.editProductForm')) {
+            e.preventDefault();
+            const form = e.target;
+            const productId = form.getAttribute('data-id');
+            const newTitle = form.querySelector('[name="title"]').value;
+
+            fetch(`http://localhost:8080/api/products/${productId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title: newTitle }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Producto actualizado:', data);
+                window.location.reload()
+                })
+            .catch((error) => {
+                console.error('Error al actualizar el producto:', error);
+            });
+        }
+    });
+    document.addEventListener('click', function(e) {
+        if (e.target.matches('.deleteProductButton')) {
+            e.preventDefault();
+            const productId = e.target.getAttribute('data-id');
+
+            if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+                fetch(`http://localhost:8080/api/products/${productId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Producto eliminado');
+                        window.location.reload(); // Recargar la página para reflejar cambios
+                    } else {
+                        throw new Error('Algo salió mal');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al eliminar el producto:', error);
+                });
+            }
+        }
+    });
+
+   document.addEventListener('DOMContentLoaded', function() {
+        const userCartId = "{{user.cart}}"; // Obtener el cartId del usuario desde Handlebars
+
+        // Verificar si el usuario ya tiene un cartId
+        if (!userCartId) {
+            // Si no tiene, crear un nuevo carrito
+            fetch("http://localhost:8080/api/carts", { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    // Aquí puedes manejar el nuevo cartId, por ejemplo, guardarlo en el usuario
+                    console.log('Nuevo carrito creado:', data);
+                })
+                .catch(error => {
+                    console.error('Error al crear el carrito:', error);
+                });
+        } else {
+            // Si ya tiene, podrías hacer algo con el cartId existente, como un GET para obtener detalles
+            console.log('El usuario ya tiene un carrito:', userCartId);
+        }
+    });
+</script>
