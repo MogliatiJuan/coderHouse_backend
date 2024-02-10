@@ -43,6 +43,20 @@
 
         if (response.ok) {
           const res = await response.json();
+
+          console.log(res)
+
+          if(res?.productsNotPurchased){
+            alert("Algunos productos no se han podido agregar a tu pedido, en el carrito podrás ver que cantidad ha quedado por comprar de qué producto.");
+          
+           await fetch(`http://localhost:8080/api/carts/${cartId}`, {
+          method: 'PUT',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({products: res.productsNotPurchased}),
+        });
+
+        if(res?.tickets.length > 0) {alert(`Sus productos: '${res.tickets.map(p => p.product)}' han sido comprados. Sus tickets son: '${res.tickets.map(p => p.idTicket)}'`);}
+        }else if(res.data){
           for (let p of res.data) {
             await fetch(`http://localhost:8080/api/carts/${cartId}/products/${p.idProduct}`, {
               method: 'DELETE',
@@ -50,6 +64,7 @@
             });
           }
           alert(`Sus productos: '${res.data.map(p => p.product)}' han sido comprados. Sus tickets son: '${res.data.map(p => p.idTicket)}'`);
+        }
           window.location.reload();
         } else {
           throw new Error('Algo salió mal');

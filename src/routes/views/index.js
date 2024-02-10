@@ -36,6 +36,11 @@ router.get("/products", authMiddleware("jwt"), async (req, res) => {
     } else {
       req.user.admin = true;
     }
+
+    products.docs.forEach((product) => {
+      product.showForm = product.stock > 0;
+    });
+
     res.render("products", { products, user: req.user });
   } catch (error) {
     console.error(error);

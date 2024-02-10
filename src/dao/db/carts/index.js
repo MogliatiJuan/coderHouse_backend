@@ -62,13 +62,20 @@ export default class CarstDAO {
     );
   }
 
-  updateCart(cid, product) {
+  async updateCart(cid, productsToUpdate) {
     try {
-      return cartsMongo.updateOne(
+      const productsForUpdate = productsToUpdate.map((p) => ({
+        product: p.id,
+        quantity: p.quantity,
+      }));
+
+      const result = await cartsMongo.updateOne(
         { _id: cid },
-        { $set: { products: [{ product }] } }
+        { $set: { products: productsForUpdate } }
       );
-    } catch {
+
+      return result;
+    } catch (error) {
       throw new Error("Update failed");
     }
   }

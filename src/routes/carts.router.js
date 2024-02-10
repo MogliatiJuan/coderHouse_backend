@@ -57,15 +57,19 @@ router.post("/:cid/product/:pid", async (req, res, next) => {
 });
 
 router.put("/:cid", async (req, res, next) => {
+  const { products } = req.body;
+  const cid = req.params.cid;
+
+  if (!products || products.length === 0) {
+    return res.status(400).send({ message: "No products provided" });
+  }
+
   try {
-    let cartFounded;
-    const cart = await CartsController.updateById(req.params.cid, req.body);
-    if (cart) cartFounded = await CartsController.getById(req.params.cid);
-    if (!cartFounded)
-      throw new Error(`Cart wiht ID: ${req.params.cid} not founded`);
+    await CartsController.updateById(cid, products);
+    const updatedCart = await CartsController.getById(cid);
     res.send({
-      message: "Cart updated",
-      cart: new ProductsInCartDTO(cartFounded),
+      message: "Cart updated successfully",
+      cart: updatedCart,
     });
   } catch (error) {
     next(error);
@@ -133,6 +137,7 @@ router.post("/:cid/purchase", async (req, res, next) => {
 
       if (productRequested.quantity > product.stock) {
         productsNotPurchased.push({
+          id: product._id,
           product: product.title,
           requestedQuantity: productRequested.quantity,
           reason: "Stock insuficiente",
@@ -163,6 +168,7 @@ router.post("/:cid/purchase", async (req, res, next) => {
       return res.send({
         message: "Compra realizada parcialmente",
         productsNotPurchased,
+        tickets,
       });
     }
 

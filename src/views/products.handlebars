@@ -18,17 +18,20 @@
 
   {{#if user.user}}
 	{{#each products.docs}}
-		<li>
-				<h2>{{this.title}}</h2>
-				<p>{{this.description}} <p/>
-        <p>Stock: {{this.stock}}</p>
-				<p>${{this.price}}</p>
-      <form method="POST" action="http://localhost:8080/api/carts/{{../user.cart}}/product/{{this.id}}" >
-				<input type="hidden" name="productId" value="{{this.id}}" />
-				<button type="submit">Agregar al carrito</button>
-			</form>
-		</li>
-	{{/each}}
+  <li>
+    <h2>{{this.title}}</h2>
+    <p>{{this.description}} <p/>
+    <p>Stock: {{this.stock}}</p>
+    <p>${{this.price}}</p>
+    {{#if this.showForm}}
+      <form method="POST" action="http://localhost:8080/api/carts/{{../user.cart}}/product/{{this.id}}">
+        <input type="hidden" name="productId" value="{{this.id}}" />
+        <button type="submit">Agregar al carrito</button>
+      </form>
+    {{/if}}
+  </li>
+{{/each}}
+
 
   {{/if}}
 
