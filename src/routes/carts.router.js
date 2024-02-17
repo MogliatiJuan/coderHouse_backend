@@ -3,13 +3,15 @@ import { CartsDTO, ProductsInCartDTO } from "../dto/index.js";
 import CartsController from "../controllers/carts.controller.js";
 import ProductsService from "../services/products.service.js";
 import TicketsService from "../services/tickets.service.js";
+import { statusError } from "../utils/StatusError.js";
+import { messageError } from "../utils/MessageError.js";
+import { CustomError } from "../utils/CustomError.js";
 
 const router = Router();
 
 router.get("/", async (_req, res, next) => {
   try {
     const cart = await CartsController.getAll();
-
     const cartFormatted = cart.map((c) => new CartsDTO(c));
     res.send(cartFormatted);
   } catch (error) {
@@ -21,7 +23,11 @@ router.get("/:cid", async (req, res, next) => {
   try {
     const cart = await CartsController.getById(req.params.cid);
     if (!cart) {
-      throw new Error(`Cart wiht ID: ${req.params.cid} not founded`);
+      CustomError.create({
+        name: `Cart ID: ${req.params.cid} no encontrado`,
+        status: statusError.NOT_FOUND,
+        message: messageError.NOT_FOUND,
+      });
     }
     res.send(new ProductsInCartDTO(cart));
   } catch (error) {
@@ -42,7 +48,11 @@ router.post("/:cid/product/:pid", async (req, res, next) => {
   try {
     let cartFounded = await CartsController.getById(req.params.cid);
     if (!cartFounded)
-      throw new Error(`Cart wiht ID: ${req.params.cid} not founded`);
+      CustomError.create({
+        name: `Cart ID: ${req.params.cid} no encontrado`,
+        status: statusError.NOT_FOUND,
+        message: messageError.NOT_FOUND,
+      });
     const cart = await CartsController.addProductOrIncreaseQuantity(
       cartFounded,
       req.params.pid
@@ -61,7 +71,11 @@ router.put("/:cid", async (req, res, next) => {
   const cid = req.params.cid;
 
   if (!products || products.length === 0) {
-    return res.status(400).send({ message: "No products provided" });
+    return CustomError.create({
+      name: "Body vacío o sin producto en la petición",
+      status: statusError.BAD_REQUEST,
+      message: messageError.BAD_REQUEST,
+    });
   }
 
   try {
@@ -79,10 +93,19 @@ router.put("/:cid", async (req, res, next) => {
 router.put("/:cid/products/:pid", async (req, res, next) => {
   try {
     const { quantity } = req.body;
-    if (!quantity) throw new Error("'quantity' field is required");
+    if (!quantity)
+      CustomError.create({
+        name: "Quantity no provista",
+        status: statusError.BAD_REQUEST,
+        message: messageError.BAD_REQUEST,
+      });
     let cartFounded = await CartsController.getById(req.params.cid);
     if (!cartFounded)
-      throw new Error(`Cart wiht ID: ${req.params.cid} not founded`);
+      CustomError.create({
+        name: `Cart ID: ${req.params.cid} no encontrado`,
+        status: statusError.NOT_FOUND,
+        message: messageError.NOT_FOUND,
+      });
     const cart = await CartsController.updateQuantityOfProduct(
       req.params,
       quantity,
@@ -98,7 +121,11 @@ router.delete("/:cid", async (req, res, next) => {
   try {
     const productDeleted = await CartsController.deleteById(req.params.cid);
     if (!productDeleted)
-      throw new Error(`Cart wiht ID: ${req.params.cid} not founded`);
+      CustomError.create({
+        name: `Cart ID: ${req.params.cid} no encontrado`,
+        status: statusError.NOT_FOUND,
+        message: messageError.NOT_FOUND,
+      });
 
     res.send({ message: "Cart deleted", cart: new CartsDTO(productDeleted) });
   } catch (error) {
@@ -147,9 +174,12 @@ router.post("/:cid/purchase", async (req, res, next) => {
           stock: product.stock - productRequested.quantity,
         });
 
-        if (!updatedProducts.acknowledged) {
-          throw new Error("Error al actualizar el stock del producto");
-        }
+        if (!updatedProducts.acknowledged)
+          return CustomError.create({
+            name: "Error al actualizar el stock del producto",
+            status: statusError.SERVER_ERROR,
+            message: messageError.SERVER_ERROR,
+          });
 
         const ticket = await TicketsService.createTicket({
           amount: productRequested.quantity,

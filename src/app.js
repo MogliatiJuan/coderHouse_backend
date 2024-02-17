@@ -11,6 +11,7 @@ import router from "./routes/index.js";
 import MessageManager from "./dao/db/messages/index.js";
 import { passportStrategy } from "./config/passport.js";
 import config from "./config/config.js";
+import { errorHandlerMiddleware } from "./middlewares/errorHandler.middleware.js";
 
 const app = express();
 const PORT = 8080;
@@ -45,11 +46,7 @@ app.get("/", (req, res) => {
   return res.send({ message: "Welcome to the API" });
 });
 
-app.use((error, req, res, next) => {
-  const message = `Hubo un error en la petición`;
-  const detail = `${error.message}`;
-  res.status(500).json({ message, detail });
-});
+app.use(errorHandlerMiddleware);
 
 const httpServer = app.listen(PORT, () => {
   console.log(`Server PORT: ${PORT}`);
