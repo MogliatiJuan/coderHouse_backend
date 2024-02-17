@@ -6,6 +6,7 @@ import messageRouter from "./messages/index.js";
 import sessionsRouter from "./sessions/index.js";
 import notifications from "./api/notifications.js";
 import { authMiddleware, authRolesMiddleware } from "../helpers/jwt.js";
+import { generateProduct } from "../utils/generateProduct.js";
 
 const router = new Router();
 
@@ -20,5 +21,16 @@ router.use(
 );
 router.use("/sessions", sessionsRouter);
 router.use("/notifications", notifications);
+router.get("/mockingproducts", async (req, res, next) => {
+  try {
+    let products = [];
+    for (let i = 0; i < 100; i++) {
+      products.push(generateProduct());
+    }
+    res.send(products);
+  } catch (error) {
+    next(error);
+  }
+});
 
 export default router;
