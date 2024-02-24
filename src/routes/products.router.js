@@ -4,6 +4,7 @@ import { AllProductsDTO, ProductDTO } from "../dto/index.js";
 import { CustomError } from "../utils/CustomError.js";
 import { statusError } from "../utils/StatusError.js";
 import { messageError } from "../utils/MessageError.js";
+import { logger } from "../config/logger.js";
 
 const router = Router();
 
@@ -20,12 +21,14 @@ router.get("/product/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     let product = await ProductsController.getById(id);
-    if (!product)
-      CustomError.create({
+    if (!product) {
+      logger.warning("Producto no encontrado");
+      return CustomError.create({
         name: "Producto no encontrado",
         status: statusError.NOT_FOUND,
         message: messageError.NOT_FOUND,
       });
+    }
     res.send(new ProductDTO(product));
   } catch (error) {
     next(error);
@@ -56,6 +59,7 @@ router.put("/:id", async (req, res, next) => {
         product: new ProductDTO(product),
       });
     }
+    logger.warning("Actualización fallida");
     CustomError.create({
       name: "Actualización fallida",
       status: statusError.SERVER_ERROR,
@@ -75,6 +79,7 @@ router.delete("/:id", async (req, res, next) => {
         message: `Product deleted succesfully with ID: ${id}`,
       });
     }
+    logger.warning("Eliminación fallida");
     CustomError.create({
       name: "Eliminación fallida",
       status: statusError.SERVER_ERROR,

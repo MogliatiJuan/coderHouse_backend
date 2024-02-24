@@ -6,6 +6,7 @@ import TicketsService from "../services/tickets.service.js";
 import { statusError } from "../utils/StatusError.js";
 import { messageError } from "../utils/MessageError.js";
 import { CustomError } from "../utils/CustomError.js";
+import { logger } from "../config/logger.js";
 
 const router = Router();
 
@@ -23,7 +24,8 @@ router.get("/:cid", async (req, res, next) => {
   try {
     const cart = await CartsController.getById(req.params.cid);
     if (!cart) {
-      CustomError.create({
+      logger.warning(`Cart ID: ${req.params.cid} no encontrado`);
+      return CustomError.create({
         name: `Cart ID: ${req.params.cid} no encontrado`,
         status: statusError.NOT_FOUND,
         message: messageError.NOT_FOUND,
@@ -47,12 +49,14 @@ router.post("/", async (_req, res, next) => {
 router.post("/:cid/product/:pid", async (req, res, next) => {
   try {
     let cartFounded = await CartsController.getById(req.params.cid);
-    if (!cartFounded)
-      CustomError.create({
+    if (!cartFounded) {
+      logger.warning(`Cart ID: ${req.params.cid} no encontrado`);
+      return CustomError.create({
         name: `Cart ID: ${req.params.cid} no encontrado`,
         status: statusError.NOT_FOUND,
         message: messageError.NOT_FOUND,
       });
+    }
     const cart = await CartsController.addProductOrIncreaseQuantity(
       cartFounded,
       req.params.pid
@@ -71,6 +75,7 @@ router.put("/:cid", async (req, res, next) => {
   const cid = req.params.cid;
 
   if (!products || products.length === 0) {
+    logger.warning("Body vacío o sin producto en la petición");
     return CustomError.create({
       name: "Body vacío o sin producto en la petición",
       status: statusError.BAD_REQUEST,
@@ -93,19 +98,23 @@ router.put("/:cid", async (req, res, next) => {
 router.put("/:cid/products/:pid", async (req, res, next) => {
   try {
     const { quantity } = req.body;
-    if (!quantity)
-      CustomError.create({
+    if (!quantity) {
+      logger.warning("Quantity no provista");
+      return CustomError.create({
         name: "Quantity no provista",
         status: statusError.BAD_REQUEST,
         message: messageError.BAD_REQUEST,
       });
+    }
     let cartFounded = await CartsController.getById(req.params.cid);
-    if (!cartFounded)
-      CustomError.create({
+    if (!cartFounded) {
+      logger.warning(`Cart ID: ${req.params.cid} no encontrado`);
+      return CustomError.create({
         name: `Cart ID: ${req.params.cid} no encontrado`,
         status: statusError.NOT_FOUND,
         message: messageError.NOT_FOUND,
       });
+    }
     const cart = await CartsController.updateQuantityOfProduct(
       req.params,
       quantity,
@@ -120,12 +129,14 @@ router.put("/:cid/products/:pid", async (req, res, next) => {
 router.delete("/:cid", async (req, res, next) => {
   try {
     const productDeleted = await CartsController.deleteById(req.params.cid);
-    if (!productDeleted)
-      CustomError.create({
+    if (!productDeleted) {
+      logger.warning(`Cart ID: ${req.params.cid} no encontrado`);
+      return CustomError.create({
         name: `Cart ID: ${req.params.cid} no encontrado`,
         status: statusError.NOT_FOUND,
         message: messageError.NOT_FOUND,
       });
+    }
 
     res.send({ message: "Cart deleted", cart: new CartsDTO(productDeleted) });
   } catch (error) {
@@ -174,12 +185,14 @@ router.post("/:cid/purchase", async (req, res, next) => {
           stock: product.stock - productRequested.quantity,
         });
 
-        if (!updatedProducts.acknowledged)
+        if (!updatedProducts.acknowledged) {
+          logger.warning("Error al actualizar el stock del producto");
           return CustomError.create({
             name: "Error al actualizar el stock del producto",
             status: statusError.SERVER_ERROR,
             message: messageError.SERVER_ERROR,
           });
+        }
 
         const ticket = await TicketsService.createTicket({
           amount: productRequested.quantity,
@@ -195,6 +208,7 @@ router.post("/:cid/purchase", async (req, res, next) => {
     }
 
     if (productsNotPurchased.length > 0) {
+      logger.warning("Compra realizada parcialmente");
       return res.send({
         message: "Compra realizada parcialmente",
         productsNotPurchased,
