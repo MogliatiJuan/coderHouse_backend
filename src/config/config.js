@@ -5,9 +5,10 @@ export default {
   CALLBACKURL_GITHUB: process.env.CALLBACKURL_GITHUB,
   JWT_SECRET: process.env.JWT_SECRET,
   PERSISTENCE: process.env.PERSISTENCE || "mongoDB",
-  twilio: {
+  TWILIO: {
     accountSid: process.env.TWILIO_ACCOUNT_SID,
     authToken: process.env.TWILIO_AUTH_TOKEN,
     phoneNumber: process.env.TWILIO_SMS_NUMBER,
   },
+  ENV: process.env.NODE_ENV || "development",
 };
