@@ -32,5 +32,18 @@ router.get("/mockingproducts", async (req, res, next) => {
     next(error);
   }
 });
+router.get("/loggerTest", (req, res) => {
+  try {
+    req.logger.debug("debug");
+    req.logger.http("verbose");
+    req.logger.info("info");
+    req.logger.warning("warning");
+    req.logger.error("error");
+    req.logger.fatal("fatal");
+    res.send({ message: "Probando logger en consola" });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 export default router;

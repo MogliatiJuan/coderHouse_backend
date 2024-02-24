@@ -12,6 +12,7 @@ import MessageManager from "./dao/db/messages/index.js";
 import { passportStrategy } from "./config/passport.js";
 import config from "./config/config.js";
 import { errorHandlerMiddleware } from "./middlewares/errorHandler.middleware.js";
+import { addLogger, logger } from "./config/logger.js";
 
 const app = express();
 const PORT = 8080;
@@ -40,16 +41,18 @@ app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 app.use(express.static(__dirname + "/public"));
+app.use(addLogger);
 
 app.use("/api", router);
 app.get("/", (req, res) => {
+  logger.info("Welcome to the API");
   return res.send({ message: "Welcome to the API" });
 });
 
 app.use(errorHandlerMiddleware);
 
 const httpServer = app.listen(PORT, () => {
-  console.log(`Server PORT: ${PORT}`);
+  console.log(`Server PORT: ${PORT}`, `- Entorno: ${config.ENV}`);
 });
 
 //Socket
