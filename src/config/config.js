@@ -10,5 +10,11 @@ export default {
     authToken: process.env.TWILIO_AUTH_TOKEN,
     phoneNumber: process.env.TWILIO_SMS_NUMBER,
   },
+  MAIL: {
+    emailService: process.env.EMAIL_SERVICE || "gmail",
+    emailPort: process.env.EMAIL_PORT || 587,
+    emailUser: process.env.EMAIL_USER,
+    emailPassword: process.env.EMAIL_PASSWORD,
+  },
   ENV: process.env.NODE_ENV || "development",
 };
