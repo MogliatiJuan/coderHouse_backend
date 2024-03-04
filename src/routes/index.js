@@ -1,5 +1,5 @@
 import { Router } from "express";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 import cartRouter from "./carts.router.js";
 import productRouter from "./products.router.js";
 import viewRouter from "./views/index.js";
@@ -92,7 +92,7 @@ router.post("/recovery-password", async (req, res, next) => {
 });
 router.post("/verify-password", async (req, res, next) => {
   try {
-    const { password, email } = req.body
+    const { password, email } = req.body;
     const user = await Users.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado." });
@@ -104,15 +104,40 @@ router.post("/verify-password", async (req, res, next) => {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       const updateResult = await Users.updateOne(
-        { email: email }, 
+        { email: email },
         { $set: { password: hashedPassword } }
       );
-        if (updateResult.matchedCount === 0) {
+      if (updateResult.matchedCount === 0) {
         return res.status(404).json({ message: "Usuario no encontrado." });
       }
       return res.json({ isSame: false });
     }
+  } catch (error) {
+    next(error);
+  }
+});
+router.post("/users/premium/:uid", async (req, res, next) => {
+  try {
+    const { role } = req.body;
+    const { uid } = req.params;
+    let newRole;
 
+    if (role == "user") {
+      newRole = "premium";
+    } else if (role == "premium") {
+      newRole = "user";
+    } else {
+      throw new Error("Invalid role.");
+    }
+
+    const updateResult = await Users.updateOne(
+      { _id: uid },
+      { $set: { role: newRole } }
+    );
+    if (updateResult.matchedCount === 0) {
+      return res.status(404).json({ message: "Usuario no encontrado." });
+    }
+    res.json({ message: `Se ha cambiado el rol a ${newRole}.` });
   } catch (error) {
     next(error);
   }

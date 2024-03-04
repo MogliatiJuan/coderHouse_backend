@@ -33,12 +33,18 @@ router.get("/products", authMiddleware("jwt"), async (req, res) => {
 
     if (req.user.role === "user") {
       req.user.user = true;
+    } else if (req.user.role === "premium") {
+      req.user.premium = true;
     } else {
       req.user.admin = true;
     }
 
     products.docs.forEach((product) => {
       product.showForm = product.stock > 0;
+      product.isOwner =
+        "premium" === req.user.role &&
+        req.user.id === product.owner?.toString();
+      product.isNotFromOwner = product.showForm && !product.isOwner;
     });
 
     res.render("products", { products, user: req.user });
