@@ -29,9 +29,14 @@ export const authMiddleware = (strategy) => (req, res, next) => {
 
 export const authRolesMiddleware = (role) => (req, res, next) => {
   if (!req.user) return res.status(401).send({ message: "Unauthorized" });
-
   const { role: userRole } = req.user;
   if (userRole !== role) return res.status(403).send({ message: "Forbidden" });
 
   next();
+};
+
+export const generateTokenInEmail = (user) => {
+  const { email, _id } = user;
+  const payload = { email, _id };
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
 };

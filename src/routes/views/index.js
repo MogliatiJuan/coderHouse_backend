@@ -98,5 +98,22 @@ router.get("/register", async (req, res) => {
     res.status(500).send({ message: error });
   }
 });
+router.get("/generate-new-password", async (req, res, next) => {
+  try {
+    const { token } = req.query;
+
+    validateToken(token)
+      .then(async (payload) => {
+        res.render("recoveryPassword", { user: payload });
+      })
+      .catch((error) => {
+        if (error.name === "TokenExpiredError") {
+          return res.redirect("/api/views/login");
+        }
+      });
+  } catch (error) {
+    next(error);
+  }
+});
 
 export default router;
