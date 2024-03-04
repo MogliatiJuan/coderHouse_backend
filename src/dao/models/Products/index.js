@@ -12,6 +12,11 @@ const productSchema = new mongoose.Schema({
   stock: Number,
   category: String,
   thumbnail: { type: Array, default: [] },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "users", // Referencia al modelo de usuarios
+    default: new mongoose.Types.ObjectId("65711e75c1b4bd53f8c2e9fc"), //id del coderAdmin
+  },
 });
 
 productSchema.plugin(mongoosePaginate);

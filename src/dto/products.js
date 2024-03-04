@@ -27,6 +27,7 @@ export class ProductDTO {
     this.code = data?.code || null;
     this.category = data?.category || null;
     this.status = data?.status === 200 ? "Available" : "Not Available";
+    this.owner = data?.owner || "65711e75c1b4bd53f8c2e9fc";
     this.images =
       Array.isArray(data?.thumbnail) && data.thumbnail.length > 0
         ? data.thumbnail.map((img) => ({ name: img }))
