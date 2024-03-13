@@ -44,8 +44,8 @@ if (process.env.NODE_ENV !== "production") {
     definition: {
       openapi: "3.0.0",
       info: {
-        title: "Documentación de productos y carritos",
-        description: "Aqui se detalla la documentación del servicio",
+        title: "Producst and Carts documentation",
+        description: "Here is the brief of the doc",
       },
     },
     apis: [path.join(__dirname, "/docs", "**", "*.yaml")],
