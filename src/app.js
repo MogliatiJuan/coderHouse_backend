@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import handlebars from "express-handlebars";
 import mongoose from "mongoose";
 import { Server } from "socket.io";
@@ -6,6 +7,8 @@ import session from "express-session";
 import mongoStore from "connect-mongo";
 import passport from "passport";
 import cookieParser from "cookie-parser";
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUiExpress from "swagger-ui-express";
 import __dirname from "./dirname.js";
 import router from "./routes/index.js";
 import MessageManager from "./dao/db/messages/index.js";
@@ -36,13 +39,27 @@ passportStrategy();
 app.use(passport.initialize());
 //app.use(passport.session());
 
+if (process.env.NODE_ENV !== "production") {
+  const swaggerConfig = {
+    definition: {
+      openapi: "3.0.0",
+      info: {
+        title: "Documentación de productos y carritos",
+        description: "Aqui se detalla la documentación del servicio",
+      },
+    },
+    apis: [path.join(__dirname, "/docs", "**", "*.yaml")],
+  };
+  const specs = swaggerJsdoc(swaggerConfig);
+  app.use("/api-docs", swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
+}
+
 handlebars.create({ allowProtoMethodsByDefault: true });
 app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 app.use(express.static(__dirname + "/public"));
 app.use(addLogger);
-
 app.use("/api", router);
 app.get("/", (req, res) => {
   logger.info("Welcome to the API");
