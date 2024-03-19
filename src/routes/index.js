@@ -19,6 +19,8 @@ import { CustomError } from "../utils/CustomError.js";
 import { messageError } from "../utils/MessageError.js";
 import { statusError } from "../utils/StatusError.js";
 import { Users } from "../dao/models/index.js";
+import user from "./users.router.js";
+
 const router = new Router();
 
 router.use("/products", productRouter);
@@ -116,31 +118,6 @@ router.post("/verify-password", async (req, res, next) => {
     next(error);
   }
 });
-router.post("/users/premium/:uid", async (req, res, next) => {
-  try {
-    const { role } = req.body;
-    const { uid } = req.params;
-    let newRole;
-
-    if (role == "user") {
-      newRole = "premium";
-    } else if (role == "premium") {
-      newRole = "user";
-    } else {
-      throw new Error("Invalid role.");
-    }
-
-    const updateResult = await Users.updateOne(
-      { _id: uid },
-      { $set: { role: newRole } }
-    );
-    if (updateResult.matchedCount === 0) {
-      return res.status(404).json({ message: "Usuario no encontrado." });
-    }
-    res.json({ message: `Se ha cambiado el rol a ${newRole}.` });
-  } catch (error) {
-    next(error);
-  }
-});
+router.use("/users", user);
 
 export default router;
