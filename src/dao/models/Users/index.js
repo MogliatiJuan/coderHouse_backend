@@ -14,6 +14,13 @@ const schema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "carts",
     },
+    documents: [
+      {
+        name: { type: String, required: true },
+        reference: { type: String, required: true },
+      },
+    ],
+    last_connection: Date,
   },
   { timestamps: true }
 );
