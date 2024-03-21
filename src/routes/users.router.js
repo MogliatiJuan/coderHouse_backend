@@ -7,58 +7,85 @@ const user = Router();
 user
   .post("/premium/:uid", async (req, res, next) => {
     try {
-      const { role } = req.body;
       const { uid } = req.params;
-      let newRole;
+      const { role } = req.body;
 
-      if (role == "user") {
-        newRole = "premium";
-      } else if (role == "premium") {
-        newRole = "user";
+      const user = await Users.findOne({ _id: uid });
+      if (!user) {
+        return res.status(404).json({ message: "Missed user" });
+      }
+
+      if (role === "premium" && user.role === "user") {
+        const requiredDocuments = [
+          "identification",
+          "proofOfResidence",
+          "bankStatement",
+        ];
+
+        const hasAllRequiredDocuments = requiredDocuments.every((docName) =>
+          user.documents.some((doc) => doc.name === docName)
+        );
+
+        if (!hasAllRequiredDocuments) {
+          return res
+            .status(400)
+            .json({ message: "The process of uploading documents has failed" });
+        }
+
+        user.role = "premium";
+        await user.save();
+
+        res.json({ message: "User is now premium member!" });
+      } else if (role === "user" && user.role === "premium") {
+        user.role = "user";
+        await user.save();
+
+        res.json({ message: "User is no longer a premium member." });
       } else {
-        throw new Error("Invalid role.");
+        res.status(400).json({ message: "The request is not valid" });
       }
-
-      const updateResult = await Users.updateOne(
-        { _id: uid },
-        { $set: { role: newRole } }
-      );
-      if (updateResult.matchedCount === 0) {
-        return res.status(404).json({ message: "Usuario no encontrado." });
-      }
-      res.json({ message: `Se ha cambiado el rol a ${newRole}.` });
     } catch (error) {
+      console.log(error);
       next(error);
     }
   })
   .post(
     "/:uid/documents",
-    uploadDocument.fields([{ name: "document" }, { name: "profile" }]),
+    uploadDocument.fields([
+      { name: "document" },
+      { name: "profile" },
+      { name: "product" },
+      { name: "identification" },
+      { name: "proofOfResidence" },
+      { name: "bankStatement" },
+    ]),
     async (req, res, next) => {
       try {
         const { uid } = req.params;
-        const documentData = req.files.document[0] || null;
-        const profileData = req.files.profile?.[0] || null;
-        // Validate files
-        if (!documentData && !profileData) {
-          throw new Error("Debe subir al menos un archivo.");
-        }
+        const baseUrl = "http://localhost:8080/uploads";
 
-        console.log(
-          `${
-            documentData
-              ? `"${documentData.filename}" de tipo "${documentData.mimetype}"`
-              : ""
-          } y\n` +
-            `${
-              profileData
-                ? `"${profileData.filename}" de tipo "${profileData.mimetype}"`
-                : ""
-            }`
-        );
-        console.log(uid);
+        let updates = Object.keys(req.files)
+          .map((fileKey) => {
+            const fileData = req.files[fileKey][0];
+            if (fileData) {
+              const documentUrl = `${baseUrl}/${uid}/${fileKey}/${fileData.filename}`;
+
+              const document = {
+                name: fileKey,
+                reference: documentUrl,
+              };
+              return { $push: { documents: document } };
+            }
+          })
+          .filter((update) => update); // Filtrar por si acaso hay entradas undefined
+
+        if (updates.length === 0) {
+          throw new Error("At least one document is required.");
+        }
+        await Users.updateOne({ _id: uid }, [...updates]);
+
+        res.json({ message: "Documents uploaded successfully with URLs." });
       } catch (error) {
-        console.log(error);
         next(error);
       }
     }

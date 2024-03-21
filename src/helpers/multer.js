@@ -1,5 +1,4 @@
-import { mkdirSync } from "fs";
-import multer from "multer";
+import { mkdirSync, readdirSync } from "fs";
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
@@ -22,7 +21,20 @@ const storage = multer.diskStorage({
       default:
         return callback(new Error("Invalid upload"), false);
     }
-    mkdirSync(folderPath, { recursive: true });
+
+    try {
+      mkdirSync(folderPath, { recursive: true });
+      const files = readdirSync(folderPath);
+      if (files.length > 0) {
+        return callback(
+          new Error(`File type ${fieldname} already exists for this user.`),
+          false
+        );
+      }
+    } catch (error) {
+      return callback(error, false);
+    }
+
     callback(null, folderPath);
   },
   filename: (req, file, callback) => {
