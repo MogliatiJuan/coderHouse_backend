@@ -1,4 +1,5 @@
 import { mkdirSync, readdirSync } from "fs";
+import multer from "multer";
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
@@ -17,6 +18,15 @@ const storage = multer.diskStorage({
         break;
       case "product":
         folderPath = `./src/public/uploads/${uid}/products`;
+        break;
+      case "identification":
+        folderPath = `./src/public/uploads/${uid}/identification`;
+        break;
+      case "proofOfResidence":
+        folderPath = `./src/public/uploads/${uid}/proofOfResidence`;
+        break;
+      case "bankStatement":
+        folderPath = `./src/public/uploads/${uid}/bankStatement`;
         break;
       default:
         return callback(new Error("Invalid upload"), false);

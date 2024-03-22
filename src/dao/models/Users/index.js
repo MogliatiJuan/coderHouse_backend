@@ -20,7 +20,7 @@ const schema = new mongoose.Schema(
         reference: { type: String, required: true },
       },
     ],
-    last_connection: Date,
+    last_connection: { type: Date, default: null },
   },
   { timestamps: true }
 );

@@ -64,7 +64,7 @@ user
         const { uid } = req.params;
         const baseUrl = "http://localhost:8080/uploads";
 
-        let updates = Object.keys(req.files)
+        let documents = Object.keys(req.files)
           .map((fileKey) => {
             const fileData = req.files[fileKey][0];
             if (fileData) {
@@ -74,17 +74,21 @@ user
                 name: fileKey,
                 reference: documentUrl,
               };
-              return { $push: { documents: document } };
+              return document;
             }
           })
-          .filter((update) => update); // Filtrar por si acaso hay entradas undefined
+          .filter((update) => update);
 
-        if (updates.length === 0) {
+        if (documents.length === 0) {
           throw new Error("At least one document is required.");
         }
-        await Users.updateOne({ _id: uid }, [...updates]);
 
-        res.json({ message: "Documents uploaded successfully with URLs." });
+        await Users.updateOne({ _id: uid }, { documents });
+
+        res.json({
+          message: "Documents uploaded successfully with URLs.",
+          documents,
+        });
       } catch (error) {
         next(error);
       }
