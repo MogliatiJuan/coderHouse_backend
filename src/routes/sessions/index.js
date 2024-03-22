@@ -29,6 +29,9 @@ router.post("/login", async (req, res) => {
 
     if (!isMatch)
       return res.status(401).send({ message: "Correo o contraseña invalidos" });
+    const dateNow = new Date();
+    user.last_connection = dateNow;
+    user.save();
     const token = generateToken(user);
     res
       .cookie("token", token, { maxAge: 1000 * 60, httpOnly: true })
@@ -38,7 +41,8 @@ router.post("/login", async (req, res) => {
     res.status(500).send({ message: "Algo salio mal" });
   }
 });
-router.get("/logout", logout);
+router.get("/logout", authMiddleware("jwt"), logout);
+
 router.post(
   "/register",
   passport.authenticate("register", { failureRedirect: "/register" }),

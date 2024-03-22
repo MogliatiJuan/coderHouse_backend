@@ -31,13 +31,20 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
   try {
-    req.session.destroy((error) => {
+    req.session.destroy(async (error) => {
       if (error) {
         return res.send({
           message: "Hubo un error al cerrar sesión",
           error: error,
         });
       }
+
+      const { email } = req.user;
+      const user = await Users.findOne({ email });
+      const dateNow = new Date();
+      user.last_connection = dateNow;
+      user.save();
+
       res.clearCookie("token");
       res.redirect("/api/views/login");
     });
