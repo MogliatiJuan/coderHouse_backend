@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/MogliatiJuan/backend_curso#readme",
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "bcrypt": "^5.1.0",
     "connect-mongo": "^5.1.0",
     "cookie-parser": "^1.4.6",
@@ -47,7 +48,6 @@
     "winston": "^3.11.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.4.1",
     "mocha": "^10.3.0",
     "nodemon": "^3.0.3"
   }
