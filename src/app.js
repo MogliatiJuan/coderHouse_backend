@@ -16,11 +16,13 @@ import { passportStrategy } from "./config/passport.js";
 import config from "./config/config.js";
 import { errorHandlerMiddleware } from "./middlewares/errorHandler.middleware.js";
 import { addLogger, logger } from "./config/logger.js";
+import cors from "cors";
 
 const app = express();
 const PORT = 8080;
 app.use(cookieParser());
 app.set("port", process.env.PORT || 8080);
+app.use(cors("*"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(

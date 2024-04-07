@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { Users } from "../dao/models/index.js";
 import { uploadDocument } from "../helpers/multer.js";
+import { UserDto } from "../dto/users.js";
+import { CustomError } from "../utils/CustomError.js";
+import { logger } from "../config/logger.js";
 
 const user = Router();
 
@@ -93,6 +96,48 @@ user
         next(error);
       }
     }
-  );
+  )
+  .get("/", async (req, res, next) => {
+    try {
+      const { id = null } = req.query;
+      if (id) {
+        const user = await Users.findById(id);
+        if (!user) {
+          logger.warning(`User ID: ${req.query} not found`);
+          return CustomError.create({
+            name: `User ID: ${req.params.cid} not found`,
+            status: statusError.NOT_FOUND,
+            message: messageError.NOT_FOUND,
+          });
+        }
+        return res.send(new UserDto(user));
+      }
+      const users = await Users.find();
+      const usersFormatted = users.map((u) => new UserDto(u));
+      res.send(usersFormatted);
+    } catch (error) {
+      next(error);
+    }
+  })
+  .delete("/", async (req, res, next) => {
+    try {
+      const users = await Users.find();
+      const dateNow = new Date();
+
+      await Promise.all(
+        users.map(async (u) => {
+          const date = new Date(u.last_connection);
+          const diff = dateNow - date;
+          if (Math.abs(diff / (1000 * 60 * 60 * 24)) > 2) {
+            await Users.deleteMany({ _id: u._id });
+          }
+        })
+      );
+      const lastUsers = await Users.find();
+      res.send(lastUsers);
+    } catch (error) {
+      next(error);
+    }
+  });
 
 export default user;

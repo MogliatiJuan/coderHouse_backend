@@ -25,6 +25,17 @@ export const errorHandlerMiddleware = (error, req, res, next) => {
         status: statusError.BAD_REQUEST,
       });
       break;
+    case statusError.CONFLICT:
+      logger.error(
+        `${error.message ? error.message : "Bad Request"} - Status: ${
+          statusError.CONFLICT
+        } - Details: ${error.name}`
+      );
+      res.status(409).json({
+        message: error.message || "Bad Request",
+        status: statusError.CONFLICT,
+      });
+      break;
     default:
       logger.fatal(
         `Error no catcheado: ${error.message} - Details: ${error.name}`

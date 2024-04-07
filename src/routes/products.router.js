@@ -5,6 +5,8 @@ import { CustomError } from "../utils/CustomError.js";
 import { statusError } from "../utils/StatusError.js";
 import { messageError } from "../utils/MessageError.js";
 import { logger } from "../config/logger.js";
+import { getOwner } from "../helpers/getOwner.js";
+import { sendEmail } from "../helpers/sendEmail.js";
 
 const router = Router();
 
@@ -73,18 +75,29 @@ router.put("/:id", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
+    let owner = null;
+    const productToDelete = await ProductsController.getById(id);
+
+    if (productToDelete?.owner) {
+      owner = getOwner(productToDelete.owner);
+    }
+
     const productDeleted = await ProductsController.deleteById(id);
     if (productDeleted.deletedCount > 0) {
+      if (owner.rol === "premium") {
+        sendEmail(owner, productToDelete);
+      }
       return res.send({
         message: `Product deleted succesfully with ID: ${id}`,
       });
+    } else {
+      logger.warning("Eliminación fallida");
+      CustomError.create({
+        name: "Eliminación fallida",
+        status: statusError.SERVER_ERROR,
+        message: messageError.SERVER_ERROR,
+      });
     }
-    logger.warning("Eliminación fallida");
-    CustomError.create({
-      name: "Eliminación fallida",
-      status: statusError.SERVER_ERROR,
-      message: messageError.SERVER_ERROR,
-    });
   } catch (error) {
     next(error);
   }
