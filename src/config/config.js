@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 export default {
   DB_URL: process.env.DB_URL,
   CLIENTID_GITHUB: process.env.CLIENTID_GITHUB,
