@@ -7,6 +7,10 @@
   <p>Deseas visitar tu perfil? <a href="http://localhost:8080/api/views/profile">Dirígete desde aquí</a></p>
   <p>Quieres visualizar tu carrito de compras? <a href="http://localhost:8080/api/views/carts/{{user.cart}}">Ir al
       carrito</a> </p>
+  {{#if user.admin}}
+  <a href="http://localhost:8080/api/views/usersManagement">Ir a administrar usuarios</a>
+  {{/if}}
+
 </div>
 <ul>
   {{#if user.user}}
