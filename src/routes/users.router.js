@@ -4,6 +4,8 @@ import { uploadDocument } from "../helpers/multer.js";
 import { UserDto } from "../dto/users.js";
 import { CustomError } from "../utils/CustomError.js";
 import { logger } from "../config/logger.js";
+import { messageError } from "../utils/MessageError.js";
+import { statusError } from "../utils/StatusError.js";
 
 const user = Router();
 
@@ -48,7 +50,6 @@ user
         res.status(400).json({ message: "The request is not valid" });
       }
     } catch (error) {
-      console.log(error);
       next(error);
     }
   })
@@ -134,7 +135,74 @@ user
         })
       );
       const lastUsers = await Users.find();
-      res.send(lastUsers);
+      const lastUsersFormatted = lastUsers.map((u) => new UserDto(u));
+      res.send(lastUsersFormatted);
+    } catch (error) {
+      next(error);
+    }
+  })
+  .put("/modifyRol", async (req, res, next) => {
+    try {
+      const { id, rol } = req.query;
+
+      if (rol !== "admin" && rol !== "user" && rol !== "premium") {
+        logger.warning(`Invalid rol ${rol}`);
+        return CustomError.create({
+          name: `Invalid rol ${rol}`,
+          status: statusError.BAD_REQUEST,
+          message: messageError.BAD_REQUEST,
+        });
+      }
+
+      const user = await Users.findById(id);
+      if (!user) {
+        logger.warning(`User ID: ${req.query} not found`);
+        return CustomError.create({
+          name: `User ID: ${req.params.cid} not found`,
+          status: statusError.NOT_FOUND,
+          message: messageError.NOT_FOUND,
+        });
+      }
+
+      const userFormatted = new UserDto(user);
+      if (userFormatted.rol == rol) {
+        return res.send(userFormatted);
+      } else {
+        await Users.findByIdAndUpdate(id, { role: rol });
+      }
+      const modifiedUser = await Users.findById(id);
+      res.send(new UserDto(modifiedUser));
+    } catch (error) {
+      next(error);
+    }
+  })
+  .delete("/user", async (req, res, next) => {
+    try {
+      const { id } = req.query;
+      if (!id) {
+        logger.warning(`Invalid id ${id}`);
+        return CustomError.create({
+          name: `Invalid id ${id}`,
+          status: statusError.BAD_REQUEST,
+          message: messageError.BAD_REQUEST,
+        });
+      }
+      const deletedUser = await Users.deleteOne({
+        _id: id,
+      });
+
+      if (deletedUser.deletedCount > 0) {
+        return res.send({
+          message: `User deleted succesfully with ID: ${id}`,
+        });
+      } else {
+        logger.warning("The user cannot be deleted");
+        CustomError.create({
+          name: "The user cannot be deleted",
+          status: statusError.SERVER_ERROR,
+          message: messageError.SERVER_ERROR,
+        });
+      }
     } catch (error) {
       next(error);
     }

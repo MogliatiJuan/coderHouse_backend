@@ -1,8 +1,9 @@
+import passport from "passport";
 import { Router } from "express";
 import { CartManagerMongo, ProductManager } from "../../dao/index.js";
-import { productsMongo } from "../../dao/models/index.js";
-import passport from "passport";
-import { authMiddleware } from "../../helpers/jwt.js";
+import { Users, productsMongo } from "../../dao/models/index.js";
+import { authMiddleware, authRolesMiddleware } from "../../helpers/jwt.js";
+import { UserDto } from "../../dto/index.js";
 
 const router = Router();
 const productManager = new ProductManager();
@@ -121,5 +122,19 @@ router.get("/generate-new-password", async (req, res, next) => {
     next(error);
   }
 });
+router.get(
+  "/usersManagement",
+  authMiddleware("jwt"),
+  authRolesMiddleware("admin"),
+  async (req, res, next) => {
+    try {
+      const users = await Users.find();
+      const usersFormatted = users.map((u) => new UserDto(u));
+      res.render("usersManagement", { data: usersFormatted });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 export default router;
