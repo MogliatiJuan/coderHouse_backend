@@ -79,9 +79,8 @@ router.delete("/:id", async (req, res, next) => {
     const productToDelete = await ProductsController.getById(id);
 
     if (productToDelete?.owner) {
-      owner = getOwner(productToDelete.owner);
+      owner = await getOwner(productToDelete.owner);
     }
-
     const productDeleted = await ProductsController.deleteById(id);
     if (productDeleted.deletedCount > 0) {
       if (owner.rol === "premium") {
