@@ -1979,52 +1979,84 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/session/login",
+									"raw": "{{base_url}}/api/sessions/login",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
-										"session",
+										"sessions",
 										"login"
 									]
 								}
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "json",
+							"_postman_previewlanguage": "html",
 							"header": [
 								{
-									"key": "X-Powered-By",
-									"value": "Express"
+									"key": "Date",
+									"value": "Wed, 10 Apr 2024 02:56:33 GMT"
 								},
 								{
 									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
+									"value": "text/html; charset=utf-8"
 								},
 								{
-									"key": "Content-Length",
-									"value": "267"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"10b-dFw8PtkaybgdU3Oocupoe6YBXVw\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 07 Dec 2023 00:20:27 GMT"
+									"key": "Transfer-Encoding",
+									"value": "chunked"
 								},
 								{
 									"key": "Connection",
 									"value": "keep-alive"
 								},
 								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
+									"key": "CF-Ray",
+									"value": "871f76dd29049c11-EZE"
+								},
+								{
+									"key": "CF-Cache-Status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2432-00zyG1ej8JE/Fc3Mmpp67opRmQw\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "rndr-id",
+									"value": "ab920f60-6c77-4e96"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"_id\": \"65710f074c9150ba0bedf185\",\n    \"firstName\": \"juan\",\n    \"lastName\": \"testing\",\n    \"email\": \"test@test.com\",\n    \"password\": \"$2b$10$ZoXzsvqq8dL2aVe2tLb2h.fMQ9sWIzhb7FlmhCnnbCYpI20Gx0PZC\",\n    \"age\": 20,\n    \"createdAt\": \"2023-12-07T00:17:11.104Z\",\n    \"updatedAt\": \"2023-12-07T00:17:11.104Z\",\n    \"__v\": 0\n}"
+							"body": "<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\" />\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n        <title></title>\n    </head>\n    <body>\n        <h1>Todos los productos</h1>\n        <div>\n            <h3>Bienvenido juan testing</h3>\n            <span>Tu rol es: \n                <b>premium</b>\n            </span>\n            <p>Deseas visitar tu perfil? \n                <a href=\"http://localhost:8080/api/views/profile\">Dirígete desde aquí</a>\n            </p>\n            <p>Quieres visualizar tu carrito de compras? \n                <a href=\"http://localhost:8080/api/views/carts/66144c53ad06b2a28de0a58f\">Ir al\n      carrito</a>\n            </p>\n        </div>\n        <ul>\n            <p>Como usuario premium, puede agregar productos de la lista.</p>\n            <form class=\"addProductForm\" data-owner=\"66144c53ad06b2a28de0a58d\" method=\"POST\" action=\"#\">\n                <h4>Agregar nuevo producto</h4>\n                <label for=\"title\">Título</label>\n                <input type=\"text\" name=\"title\" placeholder=\"Titulo\" />\n                <label for=\"stock\">Stock</label>\n                <input type=\"text\" name=\"stock\" placeholder=\"Stock\" />\n                <label for=\"value\">Valor</label>\n                <input type=\"text\" name=\"value\" placeholder=\"Precio\" />\n                <label for=\"code\">Codigo</label>\n                <input type=\"text\" name=\"code\" placeholder=\"Codigo\" />\n                <input type=\"submit\" value=\"Agregar\" />\n            </form>\n            <li>\n                <h2>iPhone XR Black</h2>\n                <p>Descripción del Producto 4\n      \n                    <p />\n                    <p>Stock: 91</p>\n                    <p>$150</p>\n                </li>\n                <form method=\"POST\" class=\"addProductToCart\" data-id=\"643f4f68ec8f50218d7e93c3\" data-cart=\"66144c53ad06b2a28de0a58f\"\n    action=\"http://localhost:8080/api/carts/66144c53ad06b2a28de0a58f/product/643f4f68ec8f50218d7e93c3\">\n                    <button type=\"submit\">Agregar al carrito</button>\n                </form>\n                <li>\n                    <h2>Producto Aleatorio 6</h2>\n                    <p>Descripción del Producto 6\n      \n                        <p />\n                        <p>Stock: 8</p>\n                        <p>$350</p>\n                    </li>\n                    <form method=\"POST\" class=\"addProductToCart\" data-id=\"643f4f74ec8f50218d7e93c7\" data-cart=\"66144c53ad06b2a28de0a58f\"\n    action=\"http://localhost:8080/api/carts/66144c53ad06b2a28de0a58f/product/643f4f74ec8f50218d7e93c7\">\n                        <button type=\"submit\">Agregar al carrito</button>\n                    </form>\n                    <li>\n                        <h2>Producto Aleatorio 7</h2>\n                        <p>Descripción del Producto 7\n      \n                            <p />\n                            <p>Stock: 3</p>\n                            <p>$400</p>\n                        </li>\n                        <form method=\"POST\" class=\"addProductToCart\" data-id=\"643f4f79ec8f50218d7e93c9\" data-cart=\"66144c53ad06b2a28de0a58f\"\n    action=\"http://localhost:8080/api/carts/66144c53ad06b2a28de0a58f/product/643f4f79ec8f50218d7e93c9\">\n                            <button type=\"submit\">Agregar al carrito</button>\n                        </form>\n                        <li>\n                            <h2>Producto Aleatorio 11</h2>\n                            <p>Descripcion del producto 11\n      \n                                <p />\n                                <p>Stock: 23</p>\n                                <p>$580</p>\n                            </li>\n                            <form method=\"POST\" class=\"addProductToCart\" data-id=\"644b01cbe8a361064129dbb8\" data-cart=\"66144c53ad06b2a28de0a58f\"\n    action=\"http://localhost:8080/api/carts/66144c53ad06b2a28de0a58f/product/644b01cbe8a361064129dbb8\">\n                                <button type=\"submit\">Agregar al carrito</button>\n                            </form>\n                            <li>\n                                <h2>Producto Aleatorio 5</h2>\n                                <p>Descripción del Producto 5\n      \n                                    <p />\n                                    <p>Stock: 200</p>\n                                    <p>$200</p>\n                                </li>\n                                <form method=\"POST\" class=\"addProductToCart\" data-id=\"643f4f6fec8f50218d7e93c5\" data-cart=\"66144c53ad06b2a28de0a58f\"\n    action=\"http://localhost:8080/api/carts/66144c53ad06b2a28de0a58f/product/643f4f6fec8f50218d7e93c5\">\n                                    <button type=\"submit\">Agregar al carrito</button>\n                                </form>\n                                <li>\n                                    <h2>Producto Aleatorio 9</h2>\n                                    <p>Descripción del Producto 9\n      \n                                        <p />\n                                        <p>Stock: 20</p>\n                                        <p>$450</p>\n                                    </li>\n                                    <form method=\"POST\" class=\"addProductToCart\" data-id=\"643f4f84ec8f50218d7e93cd\" data-cart=\"66144c53ad06b2a28de0a58f\"\n    action=\"http://localhost:8080/api/carts/66144c53ad06b2a28de0a58f/product/643f4f84ec8f50218d7e93cd\">\n                                        <button type=\"submit\">Agregar al carrito</button>\n                                    </form>\n                                    <li>\n                                        <h2>Producto Aleatorio 14</h2>\n                                        <p>Descripcion del producto 14\n      \n                                            <p />\n                                            <p>Stock: 23</p>\n                                            <p>$500</p>\n                                        </li>\n                                        <form method=\"POST\" class=\"addProductToCart\" data-id=\"644b01fde8a361064129dbbe\" data-cart=\"66144c53ad06b2a28de0a58f\"\n    action=\"http://localhost:8080/api/carts/66144c53ad06b2a28de0a58f/product/644b01fde8a361064129dbbe\">\n                                            <button type=\"submit\">Agregar al carrito</button>\n                                        </form>\n                                        <li>\n                                            <h2>Adidas</h2>\n                                            <p>Descripción del Producto 3\n      \n                                                <p />\n                                                <p>Stock: 49</p>\n                                                <p>$500</p>\n                                            </li>\n                                            <form method=\"POST\" class=\"addProductToCart\" data-id=\"643f4f63ec8f50218d7e93c1\" data-cart=\"66144c53ad06b2a28de0a58f\"\n    action=\"http://localhost:8080/api/carts/66144c53ad06b2a28de0a58f/product/643f4f63ec8f50218d7e93c1\">\n                                                <button type=\"submit\">Agregar al carrito</button>\n                                            </form>\n                                            <li>\n                                                <h2>Producto Aleatorio 8</h2>\n                                                <p>Descripción del Producto 8\n      \n                                                    <p />\n                                                    <p>Stock: 5</p>\n                                                    <p>$275</p>\n                                                </li>\n                                                <form method=\"POST\" class=\"addProductToCart\" data-id=\"643f4f7fec8f50218d7e93cb\" data-cart=\"66144c53ad06b2a28de0a58f\"\n    action=\"http://localhost:8080/api/carts/66144c53ad06b2a28de0a58f/product/643f4f7fec8f50218d7e93cb\">\n                                                    <button type=\"submit\">Agregar al carrito</button>\n                                                </form>\n                                                <li>\n                                                    <h2>Nike</h2>\n                                                    <p>\n                                                        <p />\n                                                        <p>Stock: 0</p>\n                                                        <p>$2500</p>\n                                                    </li>\n                                                </ul>\n                                                <a>1</a>\n                                                <a href=\"http://localhost:8080/api/views/products?page=2\">Next Page</a>\n                                                <script>\n  document.addEventListener('submit', function (e) {\n    if (e.target.matches('.editProductForm')) {\n      e.preventDefault();\n      const form = e.target;\n      const productId = form.getAttribute('data-id');\n      const newTitle = form.querySelector('[name=\"title\"]').value;\n\n      fetch(`http://localhost:8080/api/products/${productId}`, {\n        method: 'PUT',\n        headers: {\n          'Content-Type': 'application/json',\n        },\n        body: JSON.stringify({ title: newTitle }),\n      })\n        .then(response => response.json())\n        .then(data => {\n          console.log('Producto actualizado:', data);\n          window.location.reload()\n        })\n        .catch((error) => {\n          console.error('Error al actualizar el producto:', error);\n        });\n    }\n  });\n  document.addEventListener('submit', function (e) {\n    if (e.target.matches('.addProductToCart')) {\n      e.preventDefault();\n      const form = e.target;\n      const productId = form.getAttribute('data-id');\n      const cartId = form.getAttribute('data-cart');\n      fetch(`http://localhost:8080/api/carts/${cartId}/product/${productId}`, {\n        method: 'POST',\n        headers: {\n          'Content-Type': 'application/json',\n        },\n      })\n        .then(response => response.json())\n        .then(data => {\n          alert(\"Producto agregado\")\n        })\n        .catch((error) => {\n          console.error('Error al actualizar el producto:', error);\n        });\n    }\n  });\n  document.addEventListener('click', function (e) {\n    if (e.target.matches('.deleteProductButton')) {\n      e.preventDefault();\n      const productId = e.target.getAttribute('data-id');\n\n      if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {\n        fetch(`http://localhost:8080/api/products/${productId}`, {\n          method: 'DELETE'\n        })\n          .then(response => {\n            if (response.ok) {\n              window.location.reload(); // Recargar la página para reflejar cambios\n            } else {\n              throw new Error('Algo salió mal');\n            }\n          })\n          .catch(error => {\n            console.error('Error al eliminar el producto:', error);\n          });\n      }\n    }\n  });\n  document.addEventListener('submit', function (e) {\n    if (e.target.matches('.addProductForm')) {\n      e.preventDefault();\n      const form = e.target;\n      const id = form.getAttribute('data-owner');\n      const title = form.querySelector('[name=\"title\"]').value;\n      const stock = form.querySelector('[name=\"stock\"]').value;\n      const value = form.querySelector('[name=\"value\"]').value;\n      const code = form.querySelector('[name=\"code\"]').value;\n\n      fetch(`http://localhost:8080/api/products/`, {\n        method: 'POST',\n        headers: {\n          'Content-Type': 'application/json',\n        },\n        body: JSON.stringify({ title, stock, price: value, code, owner: id }),\n      })\n        .then(response => response.json())\n        .then(data => {\n          window.location.reload()\n        })\n        .catch((error) => {\n          console.error('Error al actualizar el producto:', error);\n        });\n    }\n  });\n\n\n  document.addEventListener('DOMContentLoaded', function () {\n    const userCartId = \"66144c53ad06b2a28de0a58f\"; // Obtener el cartId del usuario desde Handlebars\n\n    // Verificar si el usuario ya tiene un cartId\n    if (!userCartId) {\n      // Si no tiene, crear un nuevo carrito\n      fetch(\"http://localhost:8080/api/carts\", { method: \"POST\" })\n        .then(response => response.json())\n        .then(data => {\n          // Aquí puedes manejar el nuevo cartId, por ejemplo, guardarlo en el usuario\n          console.log('Nuevo carrito creado:', data);\n        })\n        .catch(error => {\n          console.error('Error al crear el carrito:', error);\n        });\n    } else {\n      // Si ya tiene, podrías hacer algo con el cartId existente, como un GET para obtener detalles\n      console.log('El usuario ya tiene un carrito:', userCartId);\n    }\n  });\n</script>\n                                            </body>\n                                        </html>"
 						}
 					]
 				},
