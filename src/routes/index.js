@@ -23,9 +23,9 @@ import user from "./users.router.js";
 
 const router = new Router();
 
-router.use("/products", productRouter);
-router.use("/carts", cartRouter);
-router.use("/views", viewRouter);
+router.use("/products", authMiddleware("jwt"), productRouter);
+router.use("/carts", authMiddleware("jwt"), cartRouter);
+router.use("/views", authMiddleware("jwt"), viewRouter);
 router.use(
   "/chat",
   authMiddleware("jwt"), //agregar payload al req

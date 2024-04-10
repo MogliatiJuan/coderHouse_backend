@@ -50,7 +50,7 @@ router.post(
     res.redirect("/api/views/login");
   }
 );
-router.get("/profile", profile);
+router.get("/profile", authMiddleware("jwt"), profile);
 router.get(
   "/github",
   passport.authenticate("github", { scope: ["user:email"] })

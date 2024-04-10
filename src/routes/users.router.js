@@ -6,11 +6,12 @@ import { CustomError } from "../utils/CustomError.js";
 import { logger } from "../config/logger.js";
 import { messageError } from "../utils/MessageError.js";
 import { statusError } from "../utils/StatusError.js";
+import { authMiddleware, authRolesMiddleware } from "../helpers/jwt.js";
 
 const user = Router();
 
 user
-  .post("/premium/:uid", async (req, res, next) => {
+  .post("/premium/:uid", authMiddleware("jwt"), async (req, res, next) => {
     try {
       const { uid } = req.params;
       const { role } = req.body;
@@ -55,6 +56,7 @@ user
   })
   .post(
     "/:uid/documents",
+    authMiddleware("jwt"),
     uploadDocument.fields([
       { name: "document" },
       { name: "profile" },
@@ -120,7 +122,7 @@ user
       next(error);
     }
   })
-  .delete("/", async (req, res, next) => {
+  .delete("/", authMiddleware("jwt"), async (req, res, next) => {
     try {
       const users = await Users.find();
       const dateNow = new Date();
@@ -141,7 +143,7 @@ user
       next(error);
     }
   })
-  .put("/modifyRol", async (req, res, next) => {
+  .put("/modifyRol", authMiddleware("jwt"), async (req, res, next) => {
     try {
       const { id, rol } = req.query;
 
@@ -176,36 +178,41 @@ user
       next(error);
     }
   })
-  .delete("/user", async (req, res, next) => {
-    try {
-      const { id } = req.query;
-      if (!id) {
-        logger.warning(`Invalid id ${id}`);
-        return CustomError.create({
-          name: `Invalid id ${id}`,
-          status: statusError.BAD_REQUEST,
-          message: messageError.BAD_REQUEST,
+  .delete(
+    "/user",
+    authMiddleware("jwt"),
+    authRolesMiddleware("admin"),
+    async (req, res, next) => {
+      try {
+        const { id } = req.query;
+        if (!id) {
+          logger.warning(`Invalid id ${id}`);
+          return CustomError.create({
+            name: `Invalid id ${id}`,
+            status: statusError.BAD_REQUEST,
+            message: messageError.BAD_REQUEST,
+          });
+        }
+        const deletedUser = await Users.deleteOne({
+          _id: id,
         });
-      }
-      const deletedUser = await Users.deleteOne({
-        _id: id,
-      });
 
-      if (deletedUser.deletedCount > 0) {
-        return res.send({
-          message: `User deleted succesfully with ID: ${id}`,
-        });
-      } else {
-        logger.warning("The user cannot be deleted");
-        CustomError.create({
-          name: "The user cannot be deleted",
-          status: statusError.SERVER_ERROR,
-          message: messageError.SERVER_ERROR,
-        });
+        if (deletedUser.deletedCount > 0) {
+          return res.send({
+            message: `User deleted succesfully with ID: ${id}`,
+          });
+        } else {
+          logger.warning("The user cannot be deleted");
+          CustomError.create({
+            name: "The user cannot be deleted",
+            status: statusError.SERVER_ERROR,
+            message: messageError.SERVER_ERROR,
+          });
+        }
+      } catch (error) {
+        next(error);
       }
-    } catch (error) {
-      next(error);
     }
-  });
+  );
 
 export default user;

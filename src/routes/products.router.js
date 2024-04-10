@@ -7,6 +7,7 @@ import { messageError } from "../utils/MessageError.js";
 import { logger } from "../config/logger.js";
 import { getOwner } from "../helpers/getOwner.js";
 import { sendEmail } from "../helpers/sendEmail.js";
+import { authRolesMiddleware } from "../helpers/jwt.js";
 
 const router = Router();
 
@@ -37,7 +38,7 @@ router.get("/product/:id", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", authRolesMiddleware("admin"), async (req, res, next) => {
   try {
     const product = await ProductsController.addProduct(req.body);
     res.status(201).send(new ProductDTO(product));
@@ -46,7 +47,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", authRolesMiddleware("admin"), async (req, res, next) => {
   try {
     const { id } = req.params;
     const productToUpdate = req.body;
@@ -72,7 +73,7 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", authRolesMiddleware("admin"), async (req, res, next) => {
   try {
     const { id } = req.params;
     let owner = null;
