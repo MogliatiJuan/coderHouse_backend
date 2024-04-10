@@ -59,8 +59,8 @@
     <p>Stock: {{this.stock}}</p>
     <p>${{this.price}}</p>
     {{#if this.showForm}}
-    <form method="POST" action="http://localhost:8080/api/carts/{{../user.cart}}/product/{{this.id}}">
-      <input type="hidden" name="productId" value="{{this.id}}" />
+    <form method="POST" class="addProductToCart" data-id="{{this.id}}" data-cart="{{../user.cart}}"
+      action="http://localhost:8080/api/carts/{{../user.cart}}/product/{{this.id}}">
       <button type="submit">Agregar al carrito</button>
     </form>
     {{/if}}
@@ -97,8 +97,8 @@
     <p>${{this.price}}</p>
   </li>
   {{#if this.isNotFromOwner}}
-  <form method="POST" action="http://localhost:8080/api/carts/{{../user.cart}}/product/{{this.id}}">
-    <input type="hidden" name="productId" value="{{this.id}}" />
+  <form method="POST" class="addProductToCart" data-id="{{this.id}}" data-cart="{{../user.cart}}"
+    action="http://localhost:8080/api/carts/{{../user.cart}}/product/{{this.id}}">
     <button type="submit">Agregar al carrito</button>
   </form>
   {{/if}}
@@ -136,6 +136,27 @@
         .then(data => {
           console.log('Producto actualizado:', data);
           window.location.reload()
+        })
+        .catch((error) => {
+          console.error('Error al actualizar el producto:', error);
+        });
+    }
+  });
+  document.addEventListener('submit', function (e) {
+    if (e.target.matches('.addProductToCart')) {
+      e.preventDefault();
+      const form = e.target;
+      const productId = form.getAttribute('data-id');
+      const cartId = form.getAttribute('data-cart');
+      fetch(`http://localhost:8080/api/carts/${cartId}/product/${productId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          alert("Producto agregado")
         })
         .catch((error) => {
           console.error('Error al actualizar el producto:', error);
