@@ -1,0 +1,3237 @@
+{
+	"info": {
+		"_postman_id": "4ba9cadd-fef1-4b70-b6bb-bd0672ca292f",
+		"name": "CURSO_BACKEND",
+		"description": "email: [adminCoder@coder.com](https://mailto:adminCoder@coder.com)  \ncontraseña: contraseña  \nrol: admin\n\n---\n\nemail: [test@test.com](https://mailto:test@test.com)\n\ncontraseña: contraseña\n\nrol: premium\n\n---\n\nemail: [admin@admin.com](https://mailto:admin@admin.com)\n\ncontraseña: contraseña\n\nrol: admin\n\n---\n\nemail: mogliatijm@gmail.com  \n  \ncontraseña: contraseña\n\nrol: user",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26406559"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "Producto Aleatorio 20",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "Descripción del Producto 4",
+									"disabled": true
+								},
+								{
+									"key": "code",
+									"value": "AAA6",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "200",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "200",
+									"disabled": true
+								},
+								{
+									"key": "stock",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "Testing2",
+									"disabled": true
+								},
+								{
+									"key": "_id",
+									"value": "643f4f68ec8f50218d7e93c3",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "desc",
+									"description": "asc / desc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Using filter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/products?code=AAA6",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "3",
+											"disabled": true
+										},
+										{
+											"key": "title",
+											"value": "Producto Aleatorio 12",
+											"disabled": true
+										},
+										{
+											"key": "description",
+											"value": "Descripción del Producto 4",
+											"disabled": true
+										},
+										{
+											"key": "code",
+											"value": "AAA6"
+										},
+										{
+											"key": "status",
+											"value": "200",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"value": "200",
+											"disabled": true
+										},
+										{
+											"key": "stock",
+											"value": "100",
+											"disabled": true
+										},
+										{
+											"key": "category",
+											"value": "Testing2",
+											"disabled": true
+										},
+										{
+											"key": "_id",
+											"value": "643f4f68ec8f50218d7e93c3",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "desc",
+											"description": "asc / desc",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "386"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"182-in+UD5h4A8ESpBTWAOzIAdqzCDU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 23:26:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Query finished\",\n    \"payload\": [\n        {\n            \"id\": \"643f4f74ec8f50218d7e93c7\",\n            \"title\": \"Producto Aleatorio 6\",\n            \"description\": \"Descripción del Producto 6\",\n            \"price\": 350,\n            \"stock\": 10,\n            \"code\": \"AAA6\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        }\n    ],\n    \"prevPage\": null,\n    \"totalPages\": 1,\n    \"nextPage\": null,\n    \"page\": 1,\n    \"hasPrevPage\": null,\n    \"hasNextPage\": null,\n    \"prevLink\": null,\n    \"nextLink\": null\n}"
+						},
+						{
+							"name": "Using limit & page",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/products?limit=2&page=3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"products"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "2"
+										},
+										{
+											"key": "page",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "603"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25b-3u/zjHeENUGJYhPEShuX4KLymU0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 23:26:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Query finished\",\n    \"payload\": [\n        {\n            \"id\": \"643f4f74ec8f50218d7e93c7\",\n            \"title\": \"Producto Aleatorio 6\",\n            \"description\": \"Descripción del Producto 6\",\n            \"price\": 350,\n            \"stock\": 10,\n            \"code\": \"AAA6\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f79ec8f50218d7e93c9\",\n            \"title\": \"Producto Aleatorio 7\",\n            \"description\": \"Descripción del Producto 7\",\n            \"price\": 400,\n            \"stock\": null,\n            \"code\": \"AAA7\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        }\n    ],\n    \"prevPage\": 2,\n    \"totalPages\": 12,\n    \"nextPage\": 4,\n    \"page\": 3,\n    \"hasPrevPage\": true,\n    \"hasNextPage\": true,\n    \"prevLink\": true,\n    \"nextLink\": true\n}"
+						},
+						{
+							"name": "Using limit",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/products?limit=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"products"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "2"
+										},
+										{
+											"key": "page",
+											"value": "3",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "582"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"246-SNkYBrWT2mLWqMJuI5S9XACw2o0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 23:27:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Query finished\",\n    \"payload\": [\n        {\n            \"id\": \"643f4f4fec8f50218d7e93bc\",\n            \"title\": \"Producto Aleatorio 1\",\n            \"description\": null,\n            \"price\": null,\n            \"stock\": null,\n            \"code\": \"AAA1\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f63ec8f50218d7e93c1\",\n            \"title\": \"Producto Aleatorio 3\",\n            \"description\": \"Descripción del Producto 3\",\n            \"price\": 500,\n            \"stock\": 75,\n            \"code\": \"AAA3\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        }\n    ],\n    \"prevPage\": null,\n    \"totalPages\": 12,\n    \"nextPage\": 2,\n    \"page\": 1,\n    \"hasPrevPage\": null,\n    \"hasNextPage\": true,\n    \"prevLink\": null,\n    \"nextLink\": true\n}"
+						},
+						{
+							"name": "All Products",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "3",
+											"disabled": true
+										},
+										{
+											"key": "title",
+											"value": "Producto Aleatorio 12",
+											"disabled": true
+										},
+										{
+											"key": "description",
+											"value": "Descripción del Producto 4",
+											"disabled": true
+										},
+										{
+											"key": "code",
+											"value": "AAA6",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "200",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"value": "200",
+											"disabled": true
+										},
+										{
+											"key": "stock",
+											"value": "100",
+											"disabled": true
+										},
+										{
+											"key": "category",
+											"value": "Testing2",
+											"disabled": true
+										},
+										{
+											"key": "_id",
+											"value": "643f4f68ec8f50218d7e93c3",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "desc",
+											"description": "asc / desc",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2348"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"92c-7UWUOkgp/DKGtdIQw4x+cys7xaE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 23:27:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Query finished\",\n    \"payload\": [\n        {\n            \"id\": \"643f4f4fec8f50218d7e93bc\",\n            \"title\": \"Producto Aleatorio 1\",\n            \"description\": null,\n            \"price\": null,\n            \"stock\": null,\n            \"code\": \"AAA1\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f63ec8f50218d7e93c1\",\n            \"title\": \"Producto Aleatorio 3\",\n            \"description\": \"Descripción del Producto 3\",\n            \"price\": 500,\n            \"stock\": 75,\n            \"code\": \"AAA3\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f68ec8f50218d7e93c3\",\n            \"title\": \"Producto Aleatorio 4\",\n            \"description\": \"Descripción del Producto 4\",\n            \"price\": 150,\n            \"stock\": 100,\n            \"code\": \"AAA4\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f6fec8f50218d7e93c5\",\n            \"title\": \"Producto Aleatorio 5\",\n            \"description\": \"Descripción del Producto 5\",\n            \"price\": 200,\n            \"stock\": 200,\n            \"code\": \"AAA5\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f74ec8f50218d7e93c7\",\n            \"title\": \"Producto Aleatorio 6\",\n            \"description\": \"Descripción del Producto 6\",\n            \"price\": 350,\n            \"stock\": 10,\n            \"code\": \"AAA6\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f79ec8f50218d7e93c9\",\n            \"title\": \"Producto Aleatorio 7\",\n            \"description\": \"Descripción del Producto 7\",\n            \"price\": 400,\n            \"stock\": null,\n            \"code\": \"AAA7\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f7fec8f50218d7e93cb\",\n            \"title\": \"Producto Aleatorio 8\",\n            \"description\": \"Descripción del Producto 8\",\n            \"price\": 275,\n            \"stock\": 5,\n            \"code\": \"AAA8\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f84ec8f50218d7e93cd\",\n            \"title\": \"Producto Aleatorio 9\",\n            \"description\": \"Descripción del Producto 9\",\n            \"price\": 450,\n            \"stock\": 20,\n            \"code\": \"AAA9\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"644b01cbe8a361064129dbb8\",\n            \"title\": \"Producto Aleatorio 11\",\n            \"description\": \"Descripcion del producto 11\",\n            \"price\": 580,\n            \"stock\": 23,\n            \"code\": \"AAA23\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"644b01dde8a361064129dbba\",\n            \"title\": \"Producto Aleatorio 12\",\n            \"description\": \"Descripcion del producto 12\",\n            \"price\": 500,\n            \"stock\": 23,\n            \"code\": \"AAA24\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        }\n    ],\n    \"prevPage\": null,\n    \"totalPages\": 3,\n    \"nextPage\": 2,\n    \"page\": 1,\n    \"hasPrevPage\": null,\n    \"hasNextPage\": true,\n    \"prevLink\": null,\n    \"nextLink\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/product/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"product",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "643f4f68ec8f50218d7e93c3"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/products/product/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"products",
+										"product",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "656a2a597b55fac3d1755ea6"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "76"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4c-kYv7rYPGv4b68KpTx5enJF6bThk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 23:32:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Hubo un error en la petición\",\n    \"detail\": \"Product doesn't exist\"\n}"
+						},
+						{
+							"name": "Product by ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/products/product/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products",
+										"product",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "643f4f68ec8f50218d7e93c3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 10 Apr 2024 00:04:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "CF-Ray",
+									"value": "871e7b16d9fe9b1d-EZE"
+								},
+								{
+									"key": "CF-Cache-Status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f9-+KmhjjmlJa6SAVy+gitngmpd814\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "rndr-id",
+									"value": "b481e68f-0a45-44da"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"643f4f68ec8f50218d7e93c3\",\n    \"title\": \"iPhone XR Black\",\n    \"description\": \"Descripción del Producto 4\",\n    \"price\": 150,\n    \"stock\": 91,\n    \"code\": \"AAA4\",\n    \"category\": \"Testing\",\n    \"status\": \"Available\",\n    \"owner\": \"65711e75c1b4bd53f8c2e9fc\",\n    \"images\": [\n        {\n            \"name\": \"non-image\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test\",\r\n    \"description\": \"tester\",\r\n    \"code\": \"AAA\",\r\n    \"price\": 300,\r\n    \"status\": 200,\r\n    \"stock\": 125,\r\n    \"category\": \"Testing\",\r\n    \"thumbnail\": [\"non-image\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Test\",\r\n    \"description\": \"tester\",\r\n    \"code\": \"AAA\",\r\n    \"price\": 300,\r\n    \"status\": 200,\r\n    \"stock\": 125,\r\n    \"category\": \"Testing\",\r\n    \"thumbnail\": [\"non-image\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "183"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b7-w5gPq5TQDC7Iisgbw0PYVYy1MrA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 23:48:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"65c0225af8628f871895fda9\",\n    \"title\": \"Test\",\n    \"description\": \"tester\",\n    \"price\": 300,\n    \"stock\": null,\n    \"code\": \"AAA\",\n    \"category\": \"Testing\",\n    \"status\": \"Available\",\n    \"images\": [\n        {\n            \"name\": \"non-image\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "403",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Test\",\r\n    \"description\": \"tester\",\r\n    \"code\": \"AAA\",\r\n    \"price\": 300,\r\n    \"status\": 200,\r\n    \"stock\": 125,\r\n    \"category\": \"Testing\",\r\n    \"thumbnail\": [\"non-image\"],\r\n    \"owner\": \"66144d6bad06b2a28de0a599\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "23"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17-bqIm6pxC4cx+ZoszvXxsClwgWw8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Apr 2024 02:37:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Forbidden\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Modify Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\": \"Botella de agua\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "65f25ad0b2d787e3dac3cf7b"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Modify Product",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"title\": \"Botella de agua\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/products/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "65f25ad0b2d787e3dac3cf7b"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 10 Apr 2024 02:32:06 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "CF-Ray",
+									"value": "871f530859959c09-EZE"
+								},
+								{
+									"key": "CF-Cache-Status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"114-mzTpF2zQDDfc4sEd0R3mMB/4+4Y\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "rndr-id",
+									"value": "9c26da3a-a3a8-4c20"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The product was updated\",\n    \"product\": {\n        \"id\": \"65f25ad0b2d787e3dac3cf7b\",\n        \"title\": \"Botella de agua\",\n        \"description\": \"tester\",\n        \"price\": 300,\n        \"stock\": 125,\n        \"code\": \"AAA\",\n        \"category\": \"Testing\",\n        \"status\": \"Available\",\n        \"owner\": \"65711e75c1b4bd53f8c2e9fc\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "656a2a5c7b55fac3d1755eaa"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Product",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/products/:pid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products",
+										":pid"
+									],
+									"variable": [
+										{
+											"key": "pid",
+											"value": "656fabcb61e63b32dc8435f0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b-S8PsJFqn+L59pAMI5oLDQhowtTw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Feb 2024 00:04:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Product deleted succesfully with ID: 656fabcb61e63b32dc8435f0\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Carts",
+			"item": [
+				{
+					"name": "All Carts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/carts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"carts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "All Carts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/carts",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"carts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "706"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c2-2mE9O6XE0LGluvMHbX5AgSd39w8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 18:13:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"656fdee490e07e8d7778bba7\",\n        \"products\": []\n    },\n    {\n        \"id\": \"65beb1b5c9420e6ad4f11a85\",\n        \"products\": [\n            {\n                \"product\": \"643f4f6fec8f50218d7e93c5\",\n                \"quantity\": 7\n            },\n            {\n                \"product\": \"643f4f79ec8f50218d7e93c9\",\n                \"quantity\": 4\n            }\n        ]\n    },\n    {\n        \"id\": \"65beb3e64b1702447e15d81a\",\n        \"products\": [\n            {\n                \"product\": \"643f4f68ec8f50218d7e93c3\",\n                \"quantity\": 3\n            },\n            {\n                \"product\": \"65beb92ffbfcf17cb93ccd36\",\n                \"quantity\": 1\n            }\n        ]\n    },\n    {\n        \"id\": \"65beb92ffbfcf17cb93ccd36\",\n        \"products\": [\n            {\n                \"product\": \"643f4f68ec8f50218d7e93c3\",\n                \"quantity\": 3\n            }\n        ]\n    },\n    {\n        \"id\": \"65beb9884a63027ece091025\",\n        \"products\": [\n            {\n                \"product\": \"643f4f68ec8f50218d7e93c3\",\n                \"quantity\": 57\n            },\n            {\n                \"product\": \"643f4f4fec8f50218d7e93bc\",\n                \"quantity\": 2\n            },\n            {\n                \"product\": \"643f4f63ec8f50218d7e93c1\",\n                \"quantity\": 4\n            },\n            {\n                \"product\": \"643f4f74ec8f50218d7e93c7\",\n                \"quantity\": 8\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Cart by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/carts/:cid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"carts",
+								":cid"
+							],
+							"variable": [
+								{
+									"key": "cid",
+									"value": "656fdec990e07e8d7778bba1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Cart by ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/carts/:cid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"carts",
+										":cid"
+									],
+									"variable": [
+										{
+											"key": "cid",
+											"value": "65beb1b5c9420e6ad4f11a85"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "515"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"203-hECOrM67OWPe7IJA5tDpz9UsS4E\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "connect.sid=s%3AGWBgWCinoFDlciGUelXxSgYD3kaW__GG.S27si%2B5Jl7vpRK2rNluRtTjicN%2B1GM7hTrjYdaMk5LI; Path=/; HttpOnly"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 17:52:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"65beb1b5c9420e6ad4f11a85\",\n    \"products\": [\n        {\n            \"id\": \"643f4f6fec8f50218d7e93c5\",\n            \"title\": \"Producto Aleatorio 5\",\n            \"description\": \"Descripción del Producto 5\",\n            \"price\": 200,\n            \"stock\": 200,\n            \"code\": \"AAA5\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ],\n            \"quantity\": 7\n        },\n        {\n            \"id\": \"643f4f79ec8f50218d7e93c9\",\n            \"title\": \"Producto Aleatorio 7\",\n            \"description\": \"Descripción del Producto 7\",\n            \"price\": 400,\n            \"stock\": null,\n            \"code\": \"AAA7\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ],\n            \"quantity\": 4\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/carts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"carts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/carts",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"carts"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f-0YOyvIDlqKLmePDqmyPGF27rnQw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 18:15:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"65bfd448f2478b66cb07b730\",\n    \"products\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Product In Cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/carts/:cid/product/:pid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"carts",
+								":cid",
+								"product",
+								":pid"
+							],
+							"variable": [
+								{
+									"key": "cid",
+									"value": "65beb1b5c9420e6ad4f11a85"
+								},
+								{
+									"key": "pid",
+									"value": "643f4f6fec8f50218d7e93c5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Product In Cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/carts/:cid/product/:pid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"carts",
+										":cid",
+										"product",
+										":pid"
+									],
+									"variable": [
+										{
+											"key": "cid",
+											"value": "65beb1b5c9420e6ad4f11a85"
+										},
+										{
+											"key": "pid",
+											"value": "643f4f6fec8f50218d7e93c5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "516"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"204-gxzKLWdt4Q4IFJWVU1iheE6F9JQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 18:29:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"65beb1b5c9420e6ad4f11a85\",\n    \"products\": [\n        {\n            \"id\": \"643f4f6fec8f50218d7e93c5\",\n            \"title\": \"Producto Aleatorio 5\",\n            \"description\": \"Descripción del Producto 5\",\n            \"price\": 200,\n            \"stock\": 200,\n            \"code\": \"AAA5\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ],\n            \"quantity\": 10\n        },\n        {\n            \"id\": \"643f4f79ec8f50218d7e93c9\",\n            \"title\": \"Producto Aleatorio 7\",\n            \"description\": \"Descripción del Producto 7\",\n            \"price\": 400,\n            \"stock\": null,\n            \"code\": \"AAA7\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ],\n            \"quantity\": 4\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update all cart",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/carts/:cid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"carts",
+								":cid"
+							],
+							"variable": [
+								{
+									"key": "cid",
+									"value": "65beb3e64b1702447e15d81a"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update all cart",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"_id\": \"643f4f4fec8f50218d7e93bc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/carts/:cid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"carts",
+										":cid"
+									],
+									"variable": [
+										{
+											"key": "cid",
+											"value": "65beb1b5c9420e6ad4f11a85"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "291"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"123-b97Z2oHG4GjhPSn4YGer4qhn7Fk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 18:34:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Cart updated\",\n    \"cart\": {\n        \"id\": \"65beb1b5c9420e6ad4f11a85\",\n        \"products\": [\n            {\n                \"id\": \"643f4f4fec8f50218d7e93bc\",\n                \"title\": \"Producto Aleatorio 1\",\n                \"description\": null,\n                \"price\": null,\n                \"stock\": null,\n                \"code\": \"AAA1\",\n                \"category\": \"Testing\",\n                \"status\": \"Available\",\n                \"images\": [\n                    {\n                        \"name\": \"non-image\"\n                    }\n                ],\n                \"quantity\": 1\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update quantity in cart",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/carts/:cid/products/:pid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"carts",
+								":cid",
+								"products",
+								":pid"
+							],
+							"variable": [
+								{
+									"key": "cid",
+									"value": "656fdec990e07e8d7778bba1"
+								},
+								{
+									"key": "pid",
+									"value": "643f4f4fec8f50218d7e93bc"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update quantity in cart",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 25\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/carts/:cid/products/:pid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"carts",
+										":cid",
+										"products",
+										":pid"
+									],
+									"variable": [
+										{
+											"key": "cid",
+											"value": "65beb1b5c9420e6ad4f11a85"
+										},
+										{
+											"key": "pid",
+											"value": "643f4f6fec8f50218d7e93c5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "550"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"226-eEu2i7MNbXvx7MhkC/JB9J/+5W0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 18:32:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Cart updated\",\n    \"cart\": {\n        \"id\": \"65beb1b5c9420e6ad4f11a85\",\n        \"products\": [\n            {\n                \"id\": \"643f4f6fec8f50218d7e93c5\",\n                \"title\": \"Producto Aleatorio 5\",\n                \"description\": \"Descripción del Producto 5\",\n                \"price\": 200,\n                \"stock\": 200,\n                \"code\": \"AAA5\",\n                \"category\": \"Testing\",\n                \"status\": \"Available\",\n                \"images\": [\n                    {\n                        \"name\": \"non-image\"\n                    }\n                ],\n                \"quantity\": 25\n            },\n            {\n                \"id\": \"643f4f79ec8f50218d7e93c9\",\n                \"title\": \"Producto Aleatorio 7\",\n                \"description\": \"Descripción del Producto 7\",\n                \"price\": 400,\n                \"stock\": null,\n                \"code\": \"AAA7\",\n                \"category\": \"Testing\",\n                \"status\": \"Available\",\n                \"images\": [\n                    {\n                        \"name\": \"non-image\"\n                    }\n                ],\n                \"quantity\": 4\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Product in Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carts/:cid/products/:pid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carts",
+								":cid",
+								"products",
+								":pid"
+							],
+							"variable": [
+								{
+									"key": "cid",
+									"value": "65beb1b5c9420e6ad4f11a85"
+								},
+								{
+									"key": "pid",
+									"value": "643f4f74ec8f50218d7e93c7"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Product in Cart",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carts/:cid/products/:pid",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carts",
+										":cid",
+										"products",
+										":pid"
+									],
+									"variable": [
+										{
+											"key": "cid",
+											"value": "65beb9884a63027ece091025"
+										},
+										{
+											"key": "pid",
+											"value": "643f4f4fec8f50218d7e93bc"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "150"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"96-RIo7jXgReVdWE/N5KOEf5mmdefQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 18:36:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"65beb9884a63027ece091025\",\n    \"products\": [\n        {\n            \"product\": \"643f4f63ec8f50218d7e93c1\",\n            \"quantity\": 4\n        },\n        {\n            \"product\": \"643f4f74ec8f50218d7e93c7\",\n            \"quantity\": 8\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carts/:cid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carts",
+								":cid"
+							],
+							"variable": [
+								{
+									"key": "cid",
+									"value": "656fdec990e07e8d7778bba1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Cart",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carts/:cid",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carts",
+										":cid"
+									],
+									"variable": [
+										{
+											"key": "cid",
+											"value": "65bfd40d7e92997aa6d67d79"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-oejzEYZ9UYMuGOe0vZ5um3bTIzg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 18:37:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Cart deleted\",\n    \"cart\": {\n        \"id\": \"65bfd40d7e92997aa6d67d79\",\n        \"products\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Purchase Products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"products\": [\r\n        {\r\n            \"_id\": \"643f4f4fec8f50218d7e93bc\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"_id\": \"643f4f63ec8f50218d7e93c1\",\r\n            \"quantity\": 1\r\n        }\r\n    ],\r\n    \"email\": \"papu@papu.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/carts/:cid/purchase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carts",
+								":cid",
+								"purchase"
+							],
+							"variable": [
+								{
+									"key": "cid",
+									"value": "21312"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Purchase Products",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"products\": [\r\n        {\r\n            \"_id\": \"643f4f4fec8f50218d7e93bc\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"_id\": \"643f4f63ec8f50218d7e93c1\",\r\n            \"quantity\": 1\r\n        }\r\n    ],\r\n    \"email\": \"papu@papu.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/carts/:cid/purchase",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carts",
+										":cid",
+										"purchase"
+									],
+									"variable": [
+										{
+											"key": "cid",
+											"value": "21312"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "156"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9c-D2WXsU6cQSCH/RHk577qJAfuxJg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Feb 2024 02:15:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Compra realizada exitosamente\",\n    \"data\": [\n        {\n            \"id\": \"65c58ab5bb51602d268f0770\",\n            \"product\": \"Nike\"\n        },\n        {\n            \"id\": \"65c58ab5bb51602d268f0773\",\n            \"product\": \"Adidas\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"admin\",\r\n    \"lastName\": \"Coder\",\r\n    \"email\": \"adminCoder@coder.com,\",\r\n    \"password\": \"contraseña\",\r\n    \"age\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/sessions/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"register"
+							]
+						},
+						"description": "Si todo esta bien, te redirige al login"
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"juan\",\r\n    \"lastName\": \"testing\",\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"contraseña\",\r\n    \"age\": 20\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/session/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"session",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "218"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"da-TQ0Qe5WVXaQbRvORSO+QLIhzdfE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 07 Dec 2023 00:10:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"firstName\": \"juan\",\n    \"lastName\": \"testing\",\n    \"email\": \"test@test.com\",\n    \"password\": \"contraseña\",\n    \"age\": 20,\n    \"_id\": \"65710d7a7f4893ab5799be04\",\n    \"createdAt\": \"2023-12-07T00:10:34.120Z\",\n    \"updatedAt\": \"2023-12-07T00:10:34.120Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/sessions/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"contraseña\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/session/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"session",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "267"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10b-dFw8PtkaybgdU3Oocupoe6YBXVw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 07 Dec 2023 00:20:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"65710f074c9150ba0bedf185\",\n    \"firstName\": \"juan\",\n    \"lastName\": \"testing\",\n    \"email\": \"test@test.com\",\n    \"password\": \"$2b$10$ZoXzsvqq8dL2aVe2tLb2h.fMQ9sWIzhb7FlmhCnnbCYpI20Gx0PZC\",\n    \"age\": 20,\n    \"createdAt\": \"2023-12-07T00:17:11.104Z\",\n    \"updatedAt\": \"2023-12-07T00:17:11.104Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/sessions/current",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"current"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/session/profile",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"session",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "72"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"48-zz9qe+g5HMUAtMiA6gvgRpAf5FU\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 07 Dec 2023 00:30:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"nombre\": \"juan\",\n    \"apellido\": \"testing\",\n    \"email\": \"test@test.com\",\n    \"edad\": 20\n}"
+						}
+					]
+				},
+				{
+					"name": "Change Role and upload documents",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"premium\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/premium/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"premium",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role\": \"premium\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/users/premium/:uid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"premium",
+										":uid"
+									],
+									"variable": [
+										{
+											"key": "uid",
+											"value": "65c44a1e4d5a4147f55aa8f4"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-4GTP2WSx3gEbMPiVrYzSbOHUeGs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2024 21:48:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Se ha cambiado el rol a user.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Upload Documents",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "document",
+									"type": "file",
+									"src": "/C:/Users/User/Downloads/Constancia de CUIT.pdf",
+									"disabled": true
+								},
+								{
+									"key": "profile",
+									"type": "file",
+									"src": "/C:/Users/User/Downloads/recibo_159433119.pdf",
+									"disabled": true
+								},
+								{
+									"key": "product",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "identification",
+									"type": "file",
+									"src": "/C:/Users/User/Downloads/Constancia de CUIT.pdf",
+									"disabled": true
+								},
+								{
+									"key": "proofOfResidence",
+									"type": "file",
+									"src": "/C:/Users/User/Downloads/Constancia de CUIT.pdf",
+									"disabled": true
+								},
+								{
+									"key": "bankStatement",
+									"type": "file",
+									"src": "/C:/Users/User/Downloads/Constancia de CUIT.pdf",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/:uid/documents/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								":uid",
+								"documents",
+								""
+							],
+							"variable": [
+								{
+									"key": "uid",
+									"value": "65fcf402cc274a71402bef35"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6612211e4ac38f1dc825ce4e",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"users"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "6612211e4ac38f1dc825ce4e",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 08 Apr 2024 18:34:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "CF-Ray",
+									"value": "8714595ccd689b20-EZE"
+								},
+								{
+									"key": "CF-Cache-Status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17a-dqvp8sPfMCIM2CLU1fse+PmvvR0\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "rndr-id",
+									"value": "046ac95a-0d57-4207"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"65711e75c1b4bd53f8c2e9fc\",\n        \"firstName\": \"Coder\",\n        \"lastName\": \"Admin\",\n        \"age\": 99,\n        \"rol\": \"admin\",\n        \"email\": \"adminCoder@coder.com\"\n    },\n    {\n        \"id\": \"66120d58cda76a87ab04c4de\",\n        \"firstName\": \"test\",\n        \"lastName\": \"testing\",\n        \"age\": 18,\n        \"rol\": \"premium\",\n        \"email\": \"papucryptoar@gmail.com\"\n    },\n    {\n        \"id\": \"6612211e4ac38f1dc825ce4e\",\n        \"firstName\": \"test\",\n        \"lastName\": \"papu\",\n        \"age\": 22,\n        \"rol\": \"user\",\n        \"email\": \"test2@test.com\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete inactive users",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "133"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"85-Uc8xITnQujLT1f6mBaR8jWxrOwA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 08 Apr 2024 18:39:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"66120d58cda76a87ab04c4de\",\n        \"firstName\": \"test\",\n        \"lastName\": \"testing\",\n        \"age\": 18,\n        \"rol\": \"premium\",\n        \"email\": \"papucryptoar@gmail.com\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Modify Rol",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/modifyRol?id=6615abf7bfb1781478d335d2&rol=premium",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"modifyRol"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6615abf7bfb1781478d335d2"
+								},
+								{
+									"key": "rol",
+									"value": "premium",
+									"description": "premium - admin - user"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/users/modifyRol?id=66120d58cda76a87ab04c4de&rol=premium21313",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"modifyRol"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "66120d58cda76a87ab04c4de"
+										},
+										{
+											"key": "rol",
+											"value": "premium21313",
+											"description": "premium - admin - user"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "131"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"83-u34T1EF40ThavKvwoQ2Iqf5+p5o\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 08 Apr 2024 19:45:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"66120d58cda76a87ab04c4de\",\n    \"firstName\": \"test\",\n    \"lastName\": \"testing\",\n    \"age\": 18,\n    \"rol\": \"premium\",\n    \"email\": \"papucryptoar@gmail.com\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/user?id=66144bdcad06b2a28de0a586",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "66144bdcad06b2a28de0a586"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/users/user?id=66144bdcad06b2a28de0a586",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"user"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "66144bdcad06b2a28de0a586"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "72"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"48-rHL96JFMLpCzJyiD8SHAHvTw7II\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 08 Apr 2024 19:57:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User deleted succesfully with ID: 66144bdcad06b2a28de0a586\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Logger",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/loggerTest",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"loggerTest"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "Producto Aleatorio 20",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "Descripción del Producto 4",
+							"disabled": true
+						},
+						{
+							"key": "code",
+							"value": "AAA6",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "200",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "200",
+							"disabled": true
+						},
+						{
+							"key": "stock",
+							"value": "100",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "Testing2",
+							"disabled": true
+						},
+						{
+							"key": "_id",
+							"value": "643f4f68ec8f50218d7e93c3",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "desc",
+							"description": "asc / desc",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Using filter",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products?code=AAA6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "Producto Aleatorio 12",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "Descripción del Producto 4",
+									"disabled": true
+								},
+								{
+									"key": "code",
+									"value": "AAA6"
+								},
+								{
+									"key": "status",
+									"value": "200",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "200",
+									"disabled": true
+								},
+								{
+									"key": "stock",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "Testing2",
+									"disabled": true
+								},
+								{
+									"key": "_id",
+									"value": "643f4f68ec8f50218d7e93c3",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "desc",
+									"description": "asc / desc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "386"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"182-in+UD5h4A8ESpBTWAOzIAdqzCDU\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 04 Feb 2024 23:26:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Query finished\",\n    \"payload\": [\n        {\n            \"id\": \"643f4f74ec8f50218d7e93c7\",\n            \"title\": \"Producto Aleatorio 6\",\n            \"description\": \"Descripción del Producto 6\",\n            \"price\": 350,\n            \"stock\": 10,\n            \"code\": \"AAA6\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        }\n    ],\n    \"prevPage\": null,\n    \"totalPages\": 1,\n    \"nextPage\": null,\n    \"page\": 1,\n    \"hasPrevPage\": null,\n    \"hasNextPage\": null,\n    \"prevLink\": null,\n    \"nextLink\": null\n}"
+				},
+				{
+					"name": "Using limit & page",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/products?limit=2&page=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "603"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"25b-3u/zjHeENUGJYhPEShuX4KLymU0\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 04 Feb 2024 23:26:56 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Query finished\",\n    \"payload\": [\n        {\n            \"id\": \"643f4f74ec8f50218d7e93c7\",\n            \"title\": \"Producto Aleatorio 6\",\n            \"description\": \"Descripción del Producto 6\",\n            \"price\": 350,\n            \"stock\": 10,\n            \"code\": \"AAA6\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f79ec8f50218d7e93c9\",\n            \"title\": \"Producto Aleatorio 7\",\n            \"description\": \"Descripción del Producto 7\",\n            \"price\": 400,\n            \"stock\": null,\n            \"code\": \"AAA7\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        }\n    ],\n    \"prevPage\": 2,\n    \"totalPages\": 12,\n    \"nextPage\": 4,\n    \"page\": 3,\n    \"hasPrevPage\": true,\n    \"hasNextPage\": true,\n    \"prevLink\": true,\n    \"nextLink\": true\n}"
+				},
+				{
+					"name": "Using limit",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/products?limit=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "582"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"246-SNkYBrWT2mLWqMJuI5S9XACw2o0\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 04 Feb 2024 23:27:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Query finished\",\n    \"payload\": [\n        {\n            \"id\": \"643f4f4fec8f50218d7e93bc\",\n            \"title\": \"Producto Aleatorio 1\",\n            \"description\": null,\n            \"price\": null,\n            \"stock\": null,\n            \"code\": \"AAA1\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f63ec8f50218d7e93c1\",\n            \"title\": \"Producto Aleatorio 3\",\n            \"description\": \"Descripción del Producto 3\",\n            \"price\": 500,\n            \"stock\": 75,\n            \"code\": \"AAA3\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        }\n    ],\n    \"prevPage\": null,\n    \"totalPages\": 12,\n    \"nextPage\": 2,\n    \"page\": 1,\n    \"hasPrevPage\": null,\n    \"hasNextPage\": true,\n    \"prevLink\": null,\n    \"nextLink\": true\n}"
+				},
+				{
+					"name": "All Products",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "Producto Aleatorio 12",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "Descripción del Producto 4",
+									"disabled": true
+								},
+								{
+									"key": "code",
+									"value": "AAA6",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "200",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "200",
+									"disabled": true
+								},
+								{
+									"key": "stock",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "Testing2",
+									"disabled": true
+								},
+								{
+									"key": "_id",
+									"value": "643f4f68ec8f50218d7e93c3",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "desc",
+									"description": "asc / desc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2348"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"92c-7UWUOkgp/DKGtdIQw4x+cys7xaE\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 04 Feb 2024 23:27:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Query finished\",\n    \"payload\": [\n        {\n            \"id\": \"643f4f4fec8f50218d7e93bc\",\n            \"title\": \"Producto Aleatorio 1\",\n            \"description\": null,\n            \"price\": null,\n            \"stock\": null,\n            \"code\": \"AAA1\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f63ec8f50218d7e93c1\",\n            \"title\": \"Producto Aleatorio 3\",\n            \"description\": \"Descripción del Producto 3\",\n            \"price\": 500,\n            \"stock\": 75,\n            \"code\": \"AAA3\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f68ec8f50218d7e93c3\",\n            \"title\": \"Producto Aleatorio 4\",\n            \"description\": \"Descripción del Producto 4\",\n            \"price\": 150,\n            \"stock\": 100,\n            \"code\": \"AAA4\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f6fec8f50218d7e93c5\",\n            \"title\": \"Producto Aleatorio 5\",\n            \"description\": \"Descripción del Producto 5\",\n            \"price\": 200,\n            \"stock\": 200,\n            \"code\": \"AAA5\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f74ec8f50218d7e93c7\",\n            \"title\": \"Producto Aleatorio 6\",\n            \"description\": \"Descripción del Producto 6\",\n            \"price\": 350,\n            \"stock\": 10,\n            \"code\": \"AAA6\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f79ec8f50218d7e93c9\",\n            \"title\": \"Producto Aleatorio 7\",\n            \"description\": \"Descripción del Producto 7\",\n            \"price\": 400,\n            \"stock\": null,\n            \"code\": \"AAA7\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f7fec8f50218d7e93cb\",\n            \"title\": \"Producto Aleatorio 8\",\n            \"description\": \"Descripción del Producto 8\",\n            \"price\": 275,\n            \"stock\": 5,\n            \"code\": \"AAA8\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"643f4f84ec8f50218d7e93cd\",\n            \"title\": \"Producto Aleatorio 9\",\n            \"description\": \"Descripción del Producto 9\",\n            \"price\": 450,\n            \"stock\": 20,\n            \"code\": \"AAA9\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"644b01cbe8a361064129dbb8\",\n            \"title\": \"Producto Aleatorio 11\",\n            \"description\": \"Descripcion del producto 11\",\n            \"price\": 580,\n            \"stock\": 23,\n            \"code\": \"AAA23\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        },\n        {\n            \"id\": \"644b01dde8a361064129dbba\",\n            \"title\": \"Producto Aleatorio 12\",\n            \"description\": \"Descripcion del producto 12\",\n            \"price\": 500,\n            \"stock\": 23,\n            \"code\": \"AAA24\",\n            \"category\": \"Testing\",\n            \"status\": \"Available\",\n            \"images\": [\n                {\n                    \"name\": \"non-image\"\n                }\n            ]\n        }\n    ],\n    \"prevPage\": null,\n    \"totalPages\": 3,\n    \"nextPage\": 2,\n    \"page\": 1,\n    \"hasPrevPage\": null,\n    \"hasNextPage\": true,\n    \"prevLink\": null,\n    \"nextLink\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "Mocking Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/mockingproducts",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"mockingproducts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mocking Products",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mockingproducts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mockingproducts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33067"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"812b-5nvoCtEZ2OOLLyF0q4Q0zeO3pFw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 Apr 2024 02:52:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"61cbbb1d8d2379143e1aa4e2\",\n        \"title\": \"Intelligent Concrete Fish\",\n        \"description\": \"The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J\",\n        \"price\": \"586.00\",\n        \"stock\": 904,\n        \"code\": \"978-1-57864-982-2\",\n        \"category\": \"Movies\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"doss.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"0cd1f4cd4cd9692fb0e38e8a\",\n        \"title\": \"Handmade Cotton Cheese\",\n        \"description\": \"New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart\",\n        \"price\": \"675.00\",\n        \"stock\": 822,\n        \"code\": \"978-1-0964-3281-4\",\n        \"category\": \"Music\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"conductor.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"8ffe46605dae1e15b494af53\",\n        \"title\": \"Incredible Bronze Towels\",\n        \"description\": \"New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart\",\n        \"price\": \"270.00\",\n        \"stock\": 740,\n        \"code\": \"978-1-05-386205-0\",\n        \"category\": \"Beauty\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"c661adbc7fac0db03d5ad71a\",\n        \"title\": \"Small Steel Towels\",\n        \"description\": \"The Football Is Good For Training And Recreational Purposes\",\n        \"price\": \"877.00\",\n        \"stock\": 198,\n        \"code\": \"978-1-86327-064-9\",\n        \"category\": \"Grocery\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"versus_star.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"a8aae4f1dff81b7ecddb6ec8\",\n        \"title\": \"Bespoke Frozen Soap\",\n        \"description\": \"Carbonite web goalkeeper gloves are ergonomically designed to give easy fit\",\n        \"price\": \"1.00\",\n        \"stock\": 630,\n        \"code\": \"978-0-465-32750-8\",\n        \"category\": \"Movies\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"tactics_likely.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"d6da0c1cff690aedccb6db2f\",\n        \"title\": \"Rustic Plastic Chicken\",\n        \"description\": \"New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016\",\n        \"price\": \"777.00\",\n        \"stock\": 430,\n        \"code\": \"978-0-11-647287-8\",\n        \"category\": \"Movies\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"a89ad6fc97adc0b4b9cdcaa1\",\n        \"title\": \"Electronic Soft Chicken\",\n        \"description\": \"Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles\",\n        \"price\": \"574.00\",\n        \"stock\": 465,\n        \"code\": \"978-0-520-95499-1\",\n        \"category\": \"Outdoors\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"fff7548d0e0f14f73af47ddf\",\n        \"title\": \"Small Frozen Keyboard\",\n        \"description\": \"Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support\",\n        \"price\": \"403.00\",\n        \"stock\": 864,\n        \"code\": \"978-0-685-02584-0\",\n        \"category\": \"Electronics\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"patiently_well_documented.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"2e5b4752db9cdd16baa9cbb2\",\n        \"title\": \"Sleek Steel Keyboard\",\n        \"description\": \"New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016\",\n        \"price\": \"863.00\",\n        \"stock\": 816,\n        \"code\": \"978-1-988279-68-8\",\n        \"category\": \"Garden\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"b2be44d4aa9f841a8166cacf\",\n        \"title\": \"Elegant Cotton Shoes\",\n        \"description\": \"Carbonite web goalkeeper gloves are ergonomically designed to give easy fit\",\n        \"price\": \"902.00\",\n        \"stock\": 878,\n        \"code\": \"978-0-7000-8190-5\",\n        \"category\": \"Baby\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"e1fe4dd4b1c209c1fed5aec6\",\n        \"title\": \"Tasty Steel Fish\",\n        \"description\": \"Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals\",\n        \"price\": \"343.00\",\n        \"stock\": 782,\n        \"code\": \"978-1-05-517238-6\",\n        \"category\": \"Beauty\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"thwack.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"7a546bade2bde378e8787bf3\",\n        \"title\": \"Tasty Metal Mouse\",\n        \"description\": \"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality\",\n        \"price\": \"271.00\",\n        \"stock\": 156,\n        \"code\": \"978-1-60518-995-6\",\n        \"category\": \"Beauty\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"4b17b31610cd48b8af59cbf7\",\n        \"title\": \"Tasty Frozen Chicken\",\n        \"description\": \"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality\",\n        \"price\": \"70.00\",\n        \"stock\": 677,\n        \"code\": \"978-0-7111-2592-6\",\n        \"category\": \"Music\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"098b6cfeba0b8ed5eb1c519e\",\n        \"title\": \"Awesome Bronze Bacon\",\n        \"description\": \"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design\",\n        \"price\": \"528.00\",\n        \"stock\": 804,\n        \"code\": \"978-1-55163-389-3\",\n        \"category\": \"Kids\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"abb9d6cff613a96cbab9ac9c\",\n        \"title\": \"Small Concrete Cheese\",\n        \"description\": \"The Football Is Good For Training And Recreational Purposes\",\n        \"price\": \"221.00\",\n        \"stock\": 597,\n        \"code\": \"978-0-941797-55-9\",\n        \"category\": \"Movies\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"0dbfbbbfbc74e6eca2e8ebdc\",\n        \"title\": \"Oriental Rubber Keyboard\",\n        \"description\": \"The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients\",\n        \"price\": \"62.00\",\n        \"stock\": 421,\n        \"code\": \"978-1-140-90019-1\",\n        \"category\": \"Tools\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"d89daf0caca2d96e5f0eada2\",\n        \"title\": \"Small Rubber Car\",\n        \"description\": \"The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients\",\n        \"price\": \"412.00\",\n        \"stock\": 485,\n        \"code\": \"978-1-381-35613-9\",\n        \"category\": \"Sports\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"0aacfd47fb07423bcd37e8bd\",\n        \"title\": \"Bespoke Soft Ball\",\n        \"description\": \"Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals\",\n        \"price\": \"718.00\",\n        \"stock\": 22,\n        \"code\": \"978-1-303-47523-8\",\n        \"category\": \"Movies\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"d96fa46ea8bcc5ea06bbbc0e\",\n        \"title\": \"Bespoke Frozen Bike\",\n        \"description\": \"New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016\",\n        \"price\": \"986.00\",\n        \"stock\": 487,\n        \"code\": \"978-1-75338-845-4\",\n        \"category\": \"Shoes\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"875b2376dfeedcaf40fec3a7\",\n        \"title\": \"Awesome Plastic Bacon\",\n        \"description\": \"New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart\",\n        \"price\": \"305.00\",\n        \"stock\": 644,\n        \"code\": \"978-0-600-52050-4\",\n        \"category\": \"Tools\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"ed09c4dc86d47ae893d9ec29\",\n        \"title\": \"Intelligent Wooden Mouse\",\n        \"description\": \"The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J\",\n        \"price\": \"319.00\",\n        \"stock\": 253,\n        \"code\": \"978-1-004-87256-5\",\n        \"category\": \"Computers\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"a5cb0c4fdfc9d9e5ea5cb44c\",\n        \"title\": \"Generic Soft Towels\",\n        \"description\": \"Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support\",\n        \"price\": \"355.00\",\n        \"stock\": 262,\n        \"code\": \"978-1-001-51511-3\",\n        \"category\": \"Home\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"curtsy.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"e71eba6ef73fd24deb0ae456\",\n        \"title\": \"Small Concrete Bacon\",\n        \"description\": \"New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart\",\n        \"price\": \"226.00\",\n        \"stock\": 757,\n        \"code\": \"978-0-289-67250-1\",\n        \"category\": \"Garden\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"d194a3efebdd0b196facb695\",\n        \"title\": \"Recycled Granite Hat\",\n        \"description\": \"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design\",\n        \"price\": \"191.00\",\n        \"stock\": 755,\n        \"code\": \"978-0-8105-1944-2\",\n        \"category\": \"Grocery\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"76e4ceab4d6daba0edce3b54\",\n        \"title\": \"Ergonomic Frozen Bacon\",\n        \"description\": \"Carbonite web goalkeeper gloves are ergonomically designed to give easy fit\",\n        \"price\": \"984.00\",\n        \"stock\": 268,\n        \"code\": \"978-1-4795-6823-9\",\n        \"category\": \"Outdoors\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"df438dbb1f4f7ac8e4def6b0\",\n        \"title\": \"Bespoke Rubber Car\",\n        \"description\": \"Carbonite web goalkeeper gloves are ergonomically designed to give easy fit\",\n        \"price\": \"89.00\",\n        \"stock\": 970,\n        \"code\": \"978-0-8109-9137-8\",\n        \"category\": \"Electronics\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"yowza.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"118fbff31d9be1be210f73cd\",\n        \"title\": \"Handmade Granite Car\",\n        \"description\": \"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality\",\n        \"price\": \"381.00\",\n        \"stock\": 205,\n        \"code\": \"978-1-62683-179-7\",\n        \"category\": \"Grocery\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"phooey_assured_alarmed.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"f829bca2fa9fa0b62acaa90d\",\n        \"title\": \"Recycled Frozen Towels\",\n        \"description\": \"The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive\",\n        \"price\": \"993.00\",\n        \"stock\": 188,\n        \"code\": \"978-0-216-31125-1\",\n        \"category\": \"Clothing\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"82dd9acf422e34cf2fb0d9ec\",\n        \"title\": \"Licensed Concrete Soap\",\n        \"description\": \"The Football Is Good For Training And Recreational Purposes\",\n        \"price\": \"527.00\",\n        \"stock\": 952,\n        \"code\": \"978-1-116-62152-5\",\n        \"category\": \"Toys\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"9a934af85029dec172ddc72d\",\n        \"title\": \"Modern Soft Table\",\n        \"description\": \"The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients\",\n        \"price\": \"199.00\",\n        \"stock\": 225,\n        \"code\": \"978-1-199-32056-8\",\n        \"category\": \"Garden\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"f51abb0df554c0c896a4d72c\",\n        \"title\": \"Ergonomic Wooden Pizza\",\n        \"description\": \"Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles\",\n        \"price\": \"569.00\",\n        \"stock\": 753,\n        \"code\": \"978-1-4748-7127-3\",\n        \"category\": \"Clothing\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"0bafffc8ffcac5e5d4dc1c7d\",\n        \"title\": \"Unbranded Cotton Chicken\",\n        \"description\": \"The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients\",\n        \"price\": \"978.00\",\n        \"stock\": 432,\n        \"code\": \"978-0-12-334285-0\",\n        \"category\": \"Outdoors\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"815d70cf0a7dbfd1ad9fabc4\",\n        \"title\": \"Awesome Fresh Chair\",\n        \"description\": \"The Football Is Good For Training And Recreational Purposes\",\n        \"price\": \"536.00\",\n        \"stock\": 127,\n        \"code\": \"978-1-0842-8533-0\",\n        \"category\": \"Books\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"around.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"3a0ea108f9d6f1a999cf7fc9\",\n        \"title\": \"Oriental Granite Cheese\",\n        \"description\": \"New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart\",\n        \"price\": \"604.00\",\n        \"stock\": 219,\n        \"code\": \"978-0-19-020093-0\",\n        \"category\": \"Grocery\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"bce15daf10ab5aabbdffa5bf\",\n        \"title\": \"Intelligent Cotton Soap\",\n        \"description\": \"The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J\",\n        \"price\": \"892.00\",\n        \"stock\": 6,\n        \"code\": \"978-1-875346-64-6\",\n        \"category\": \"Tools\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"b83bb6a361e3e3a88be296de\",\n        \"title\": \"Recycled Plastic Car\",\n        \"description\": \"Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support\",\n        \"price\": \"943.00\",\n        \"stock\": 248,\n        \"code\": \"978-1-967909-03-2\",\n        \"category\": \"Computers\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"discard_generally_gainsay.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"6c74bbacbeeeccbf0ead579a\",\n        \"title\": \"Rustic Metal Fish\",\n        \"description\": \"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality\",\n        \"price\": \"914.00\",\n        \"stock\": 440,\n        \"code\": \"978-0-00-918063-7\",\n        \"category\": \"Industrial\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"remark_decoy_ah.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"4f0d30ec1e7726ba549caaf4\",\n        \"title\": \"Small Plastic Bike\",\n        \"description\": \"Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support\",\n        \"price\": \"891.00\",\n        \"stock\": 596,\n        \"code\": \"978-1-892786-36-4\",\n        \"category\": \"Shoes\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"through.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"f8ebc7e595f7470da96f837c\",\n        \"title\": \"Recycled Metal Shirt\",\n        \"description\": \"The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J\",\n        \"price\": \"632.00\",\n        \"stock\": 81,\n        \"code\": \"978-1-0357-4629-3\",\n        \"category\": \"Health\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"till_whoever_which.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"e3d7fe3692a994aad60b6cba\",\n        \"title\": \"Tasty Fresh Fish\",\n        \"description\": \"Carbonite web goalkeeper gloves are ergonomically designed to give easy fit\",\n        \"price\": \"558.00\",\n        \"stock\": 961,\n        \"code\": \"978-1-85980-589-3\",\n        \"category\": \"Automotive\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"overgraze_abaft.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"cd3d1fdbe7f3e35d12cbfef6\",\n        \"title\": \"Tasty Rubber Car\",\n        \"description\": \"The Football Is Good For Training And Recreational Purposes\",\n        \"price\": \"567.00\",\n        \"stock\": 536,\n        \"code\": \"978-1-100-54413-7\",\n        \"category\": \"Kids\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"striped.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"c7be41587d7adc7efd1f9cd8\",\n        \"title\": \"Licensed Rubber Cheese\",\n        \"description\": \"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality\",\n        \"price\": \"116.00\",\n        \"stock\": 189,\n        \"code\": \"978-1-7205-2364-2\",\n        \"category\": \"Electronics\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"bcc40e5ef3c3caebee018f2d\",\n        \"title\": \"Intelligent Soft Table\",\n        \"description\": \"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality\",\n        \"price\": \"447.00\",\n        \"stock\": 429,\n        \"code\": \"978-0-226-35076-9\",\n        \"category\": \"Outdoors\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"marmalade_down_squatter.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"5d0c9fac69ac7dfb79cca8ff\",\n        \"title\": \"Refined Rubber Cheese\",\n        \"description\": \"Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals\",\n        \"price\": \"641.00\",\n        \"stock\": 637,\n        \"code\": \"978-1-06-349914-7\",\n        \"category\": \"Toys\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"d6b50faaa8de7c1fadf4c019\",\n        \"title\": \"Awesome Wooden Tuna\",\n        \"description\": \"Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles\",\n        \"price\": \"825.00\",\n        \"stock\": 473,\n        \"code\": \"978-0-428-12162-4\",\n        \"category\": \"Music\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"aee0db3d015f1bef9f0ac7ef\",\n        \"title\": \"Handmade Concrete Table\",\n        \"description\": \"New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016\",\n        \"price\": \"607.00\",\n        \"stock\": 382,\n        \"code\": \"978-1-80951-332-8\",\n        \"category\": \"Clothing\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"rip_failing.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"b82dc4a797fa3be81f3f321e\",\n        \"title\": \"Modern Metal Table\",\n        \"description\": \"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design\",\n        \"price\": \"367.00\",\n        \"stock\": 781,\n        \"code\": \"978-0-478-79663-6\",\n        \"category\": \"Grocery\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"demanding.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"778fd1760afdedfce2ed0d3a\",\n        \"title\": \"Intelligent Frozen Chicken\",\n        \"description\": \"The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients\",\n        \"price\": \"947.00\",\n        \"stock\": 687,\n        \"code\": \"978-0-86597-182-0\",\n        \"category\": \"Jewelery\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"d47bb682a99804a0b0a8c7bd\",\n        \"title\": \"Fantastic Concrete Chicken\",\n        \"description\": \"The Football Is Good For Training And Recreational Purposes\",\n        \"price\": \"91.00\",\n        \"stock\": 78,\n        \"code\": \"978-1-4476-9179-2\",\n        \"category\": \"Tools\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"incidentally_remind_offload.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"ebea4a13ca7ebcbc8adc53d5\",\n        \"title\": \"Sleek Cotton Hat\",\n        \"description\": \"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality\",\n        \"price\": \"681.00\",\n        \"stock\": 419,\n        \"code\": \"978-0-7275-6017-9\",\n        \"category\": \"Electronics\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"readily_officially.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"fe2e7b255be2bf7abf3bcf5a\",\n        \"title\": \"Oriental Soft Mouse\",\n        \"description\": \"The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive\",\n        \"price\": \"393.00\",\n        \"stock\": 248,\n        \"code\": \"978-1-392-39486-1\",\n        \"category\": \"Industrial\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"1b0fbfea67ebdd89c1b7fcd4\",\n        \"title\": \"Small Metal Towels\",\n        \"description\": \"Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles\",\n        \"price\": \"80.00\",\n        \"stock\": 506,\n        \"code\": \"978-0-89046-584-4\",\n        \"category\": \"Kids\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"f65aabcaec3ab18adee5bb4d\",\n        \"title\": \"Licensed Soft Cheese\",\n        \"description\": \"Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support\",\n        \"price\": \"343.00\",\n        \"stock\": 607,\n        \"code\": \"978-0-479-20995-1\",\n        \"category\": \"Music\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"hmph.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"1d5b8f3e4eebe6bf020323d2\",\n        \"title\": \"Ergonomic Cotton Bacon\",\n        \"description\": \"New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016\",\n        \"price\": \"643.00\",\n        \"stock\": 515,\n        \"code\": \"978-0-573-74894-3\",\n        \"category\": \"Industrial\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"9df5a166edddbcbb4c0caf1b\",\n        \"title\": \"Bespoke Bronze Chair\",\n        \"description\": \"New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart\",\n        \"price\": \"293.00\",\n        \"stock\": 977,\n        \"code\": \"978-1-188-51652-1\",\n        \"category\": \"Automotive\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"db8f20b1c6d327ee3033e3ea\",\n        \"title\": \"Modern Rubber Pants\",\n        \"description\": \"Carbonite web goalkeeper gloves are ergonomically designed to give easy fit\",\n        \"price\": \"64.00\",\n        \"stock\": 909,\n        \"code\": \"978-1-6722-2396-6\",\n        \"category\": \"Grocery\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"4fbbe2d8dfd526528fad5c8e\",\n        \"title\": \"Ergonomic Granite Gloves\",\n        \"description\": \"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design\",\n        \"price\": \"653.00\",\n        \"stock\": 609,\n        \"code\": \"978-0-943716-01-5\",\n        \"category\": \"Home\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"e6672a8d77aedebb3fe88fc9\",\n        \"title\": \"Small Bronze Bike\",\n        \"description\": \"The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive\",\n        \"price\": \"422.00\",\n        \"stock\": 32,\n        \"code\": \"978-0-03-805924-9\",\n        \"category\": \"Automotive\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"circa_feather.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"fcbad6aabfe73bb8270efa77\",\n        \"title\": \"Electronic Bronze Chicken\",\n        \"description\": \"Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support\",\n        \"price\": \"251.00\",\n        \"stock\": 928,\n        \"code\": \"978-0-02-532261-5\",\n        \"category\": \"Books\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"silently.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"f2b1d3ce7b0d5453f9b691bd\",\n        \"title\": \"Handmade Soft Computer\",\n        \"description\": \"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality\",\n        \"price\": \"676.00\",\n        \"stock\": 50,\n        \"code\": \"978-0-18-606107-1\",\n        \"category\": \"Sports\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"3e7acfa8c77cccbe835c7b6d\",\n        \"title\": \"Ergonomic Concrete Hat\",\n        \"description\": \"Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support\",\n        \"price\": \"97.00\",\n        \"stock\": 424,\n        \"code\": \"978-1-885808-10-3\",\n        \"category\": \"Books\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"um.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"4db9bcba40e4935b3e77e4cc\",\n        \"title\": \"Awesome Wooden Ball\",\n        \"description\": \"The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive\",\n        \"price\": \"970.00\",\n        \"stock\": 346,\n        \"code\": \"978-0-391-27964-3\",\n        \"category\": \"Movies\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"fdb612cabc3f99baaaf93bfa\",\n        \"title\": \"Unbranded Wooden Car\",\n        \"description\": \"Carbonite web goalkeeper gloves are ergonomically designed to give easy fit\",\n        \"price\": \"287.00\",\n        \"stock\": 142,\n        \"code\": \"978-0-2289-7004-0\",\n        \"category\": \"Sports\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"yet.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"a005e8c1dcef5b4a63dcbbbd\",\n        \"title\": \"Luxurious Rubber Chips\",\n        \"description\": \"The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive\",\n        \"price\": \"262.00\",\n        \"stock\": 26,\n        \"code\": \"978-1-388-27122-0\",\n        \"category\": \"Sports\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"d55dbb4cc8ffbbdce65bcdc9\",\n        \"title\": \"Unbranded Plastic Sausages\",\n        \"description\": \"New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016\",\n        \"price\": \"49.00\",\n        \"stock\": 808,\n        \"code\": \"978-1-163-22308-6\",\n        \"category\": \"Books\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"39cf8ae8cef718a1eed7655b\",\n        \"title\": \"Practical Frozen Towels\",\n        \"description\": \"New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016\",\n        \"price\": \"101.00\",\n        \"stock\": 862,\n        \"code\": \"978-1-316-50297-6\",\n        \"category\": \"Home\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"dependency.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"a709eb7a82d2ad7b149f5658\",\n        \"title\": \"Generic Wooden Pizza\",\n        \"description\": \"Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals\",\n        \"price\": \"970.00\",\n        \"stock\": 508,\n        \"code\": \"978-1-85378-811-6\",\n        \"category\": \"Kids\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"5ca607f2d61daf04cfd914ee\",\n        \"title\": \"Unbranded Soft Bike\",\n        \"description\": \"Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support\",\n        \"price\": \"457.00\",\n        \"stock\": 683,\n        \"code\": \"978-1-254-12753-8\",\n        \"category\": \"Toys\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"bce679ddb7205bc5fbee15a2\",\n        \"title\": \"Ergonomic Rubber Sausages\",\n        \"description\": \"The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive\",\n        \"price\": \"172.00\",\n        \"stock\": 335,\n        \"code\": \"978-0-14-137829-9\",\n        \"category\": \"Home\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"eek.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"fc44f7a042f1f82abcffcb2b\",\n        \"title\": \"Tasty Rubber Bike\",\n        \"description\": \"The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients\",\n        \"price\": \"221.00\",\n        \"stock\": 343,\n        \"code\": \"978-1-55669-501-8\",\n        \"category\": \"Tools\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"knowingly_boo.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"dddf542da9bf5d2d751954e9\",\n        \"title\": \"Gorgeous Frozen Tuna\",\n        \"description\": \"The Football Is Good For Training And Recreational Purposes\",\n        \"price\": \"838.00\",\n        \"stock\": 926,\n        \"code\": \"978-0-663-30242-0\",\n        \"category\": \"Health\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"accustom_incomplete.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"11bc3c8cefaabd7bbac3c6b5\",\n        \"title\": \"Luxurious Concrete Cheese\",\n        \"description\": \"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design\",\n        \"price\": \"345.00\",\n        \"stock\": 486,\n        \"code\": \"978-0-595-54820-0\",\n        \"category\": \"Music\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"ddcdcce5bf7c0849e0212c4f\",\n        \"title\": \"Generic Metal Chips\",\n        \"description\": \"Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles\",\n        \"price\": \"703.00\",\n        \"stock\": 631,\n        \"code\": \"978-1-7185-8697-0\",\n        \"category\": \"Shoes\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"yahoo.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"7f32a6bacfbf33f4a15470da\",\n        \"title\": \"Luxurious Granite Hat\",\n        \"description\": \"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design\",\n        \"price\": \"262.00\",\n        \"stock\": 373,\n        \"code\": \"978-1-903444-27-6\",\n        \"category\": \"Home\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"oh_mocha_fooey.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"f66abaa5e6a57aa91cb76ded\",\n        \"title\": \"Recycled Frozen Sausages\",\n        \"description\": \"New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart\",\n        \"price\": \"294.00\",\n        \"stock\": 433,\n        \"code\": \"978-1-4295-1554-2\",\n        \"category\": \"Books\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"edify_yum.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"60712db479ffcdabfb3fb4fd\",\n        \"title\": \"Fantastic Granite Soap\",\n        \"description\": \"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality\",\n        \"price\": \"549.00\",\n        \"stock\": 494,\n        \"code\": \"978-1-115-93011-6\",\n        \"category\": \"Movies\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"bd10148ac7ca7b0ca2eb389f\",\n        \"title\": \"Licensed Cotton Bike\",\n        \"description\": \"The Football Is Good For Training And Recreational Purposes\",\n        \"price\": \"330.00\",\n        \"stock\": 737,\n        \"code\": \"978-1-4410-8947-2\",\n        \"category\": \"Music\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"bd367ce4b7bd3ace1e78b9f2\",\n        \"title\": \"Incredible Wooden Hat\",\n        \"description\": \"Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals\",\n        \"price\": \"582.00\",\n        \"stock\": 271,\n        \"code\": \"978-0-9711693-4-0\",\n        \"category\": \"Beauty\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"ccfab509baa7af4b04cf99dd\",\n        \"title\": \"Refined Steel Fish\",\n        \"description\": \"Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles\",\n        \"price\": \"162.00\",\n        \"stock\": 171,\n        \"code\": \"978-0-416-61490-9\",\n        \"category\": \"Home\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"e43cfa805a96a76e1beeba6e\",\n        \"title\": \"Licensed Metal Mouse\",\n        \"description\": \"The Football Is Good For Training And Recreational Purposes\",\n        \"price\": \"814.00\",\n        \"stock\": 155,\n        \"code\": \"978-1-278-33741-8\",\n        \"category\": \"Automotive\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"than.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"aaac0bacdff4acf9cea3af1d\",\n        \"title\": \"Sleek Bronze Sausages\",\n        \"description\": \"New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016\",\n        \"price\": \"240.00\",\n        \"stock\": 45,\n        \"code\": \"978-1-6678-8091-4\",\n        \"category\": \"Health\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"elaborate_aw_supposing.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"066ea329c5a9deb2559d48ef\",\n        \"title\": \"Gorgeous Rubber Table\",\n        \"description\": \"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design\",\n        \"price\": \"210.00\",\n        \"stock\": 646,\n        \"code\": \"978-1-295-86742-4\",\n        \"category\": \"Electronics\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"cbd22fdf68dd37feebeb6c3c\",\n        \"title\": \"Gorgeous Bronze Chips\",\n        \"description\": \"Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support\",\n        \"price\": \"294.00\",\n        \"stock\": 971,\n        \"code\": \"978-0-269-08905-3\",\n        \"category\": \"Books\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"dfdddb56e3cedcfa5a3cdef9\",\n        \"title\": \"Handmade Plastic Cheese\",\n        \"description\": \"Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles\",\n        \"price\": \"940.00\",\n        \"stock\": 36,\n        \"code\": \"978-0-378-29324-2\",\n        \"category\": \"Jewelery\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"incidentally_implore_down.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"412d023ebaa5aedad71bffc9\",\n        \"title\": \"Modern Plastic Pants\",\n        \"description\": \"The Football Is Good For Training And Recreational Purposes\",\n        \"price\": \"448.00\",\n        \"stock\": 820,\n        \"code\": \"978-1-4597-7902-0\",\n        \"category\": \"Games\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"e959925c8ba4bcc5f6d10a0c\",\n        \"title\": \"Awesome Rubber Car\",\n        \"description\": \"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design\",\n        \"price\": \"395.00\",\n        \"stock\": 68,\n        \"code\": \"978-1-63183-123-2\",\n        \"category\": \"Tools\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"yowza.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"614fb4c37b516aeb2ab1d1a0\",\n        \"title\": \"Electronic Concrete Sausages\",\n        \"description\": \"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality\",\n        \"price\": \"377.00\",\n        \"stock\": 65,\n        \"code\": \"978-0-6398347-6-4\",\n        \"category\": \"Games\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"meh_motionless_openly.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"cea2eae5bfac3ac4bfaf4277\",\n        \"title\": \"Oriental Granite Cheese\",\n        \"description\": \"New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart\",\n        \"price\": \"546.00\",\n        \"stock\": 709,\n        \"code\": \"978-1-78903-059-4\",\n        \"category\": \"Shoes\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"baca49f8ba6b8cb838dcefcc\",\n        \"title\": \"Rustic Metal Bacon\",\n        \"description\": \"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality\",\n        \"price\": \"240.00\",\n        \"stock\": 699,\n        \"code\": \"978-0-86670-825-8\",\n        \"category\": \"Toys\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"intercede.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"afff0cdec54bfc1d52d7a5fc\",\n        \"title\": \"Practical Steel Keyboard\",\n        \"description\": \"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design\",\n        \"price\": \"946.00\",\n        \"stock\": 360,\n        \"code\": \"978-1-4791-2584-5\",\n        \"category\": \"Garden\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"54d6fd9bcb1ed6b43df6dacd\",\n        \"title\": \"Modern Rubber Chair\",\n        \"description\": \"Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support\",\n        \"price\": \"935.00\",\n        \"stock\": 330,\n        \"code\": \"978-0-88730-972-4\",\n        \"category\": \"Industrial\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"df27a64aead82a17320f2eec\",\n        \"title\": \"Modern Soft Gloves\",\n        \"description\": \"New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart\",\n        \"price\": \"141.00\",\n        \"stock\": 350,\n        \"code\": \"978-0-7152-9110-8\",\n        \"category\": \"Baby\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"db5d95edf2c1ba801799de2b\",\n        \"title\": \"Luxurious Soft Salad\",\n        \"description\": \"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality\",\n        \"price\": \"861.00\",\n        \"stock\": 368,\n        \"code\": \"978-1-4557-7404-3\",\n        \"category\": \"Jewelery\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"cautiously_international_frightfully.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"c92afd297fda30ff57fcfb83\",\n        \"title\": \"Rustic Wooden Chicken\",\n        \"description\": \"The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients\",\n        \"price\": \"748.00\",\n        \"stock\": 456,\n        \"code\": \"978-1-76203-722-0\",\n        \"category\": \"Beauty\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"7a70b2488441c0fc4effc8f2\",\n        \"title\": \"Bespoke Steel Bacon\",\n        \"description\": \"Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals\",\n        \"price\": \"906.00\",\n        \"stock\": 208,\n        \"code\": \"978-1-63446-106-1\",\n        \"category\": \"Sports\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"pish.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"bfdcb8a7aaf7d4ba1de3bd91\",\n        \"title\": \"Intelligent Frozen Tuna\",\n        \"description\": \"The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive\",\n        \"price\": \"946.00\",\n        \"stock\": 740,\n        \"code\": \"978-1-397-33120-5\",\n        \"category\": \"Electronics\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"1928de2e5aba55ec3605e709\",\n        \"title\": \"Small Rubber Chicken\",\n        \"description\": \"New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart\",\n        \"price\": \"282.00\",\n        \"stock\": 714,\n        \"code\": \"978-1-7068-7334-1\",\n        \"category\": \"Tools\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"judgementally_loosely_grown.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"c59cc8ddba25ed94fcee8bd3\",\n        \"title\": \"Licensed Cotton Soap\",\n        \"description\": \"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design\",\n        \"price\": \"860.00\",\n        \"stock\": 258,\n        \"code\": \"978-0-17-555467-6\",\n        \"category\": \"Games\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"non-image\"\n            }\n        ]\n    },\n    {\n        \"id\": \"8265b9f06e352c3aa4c411fe\",\n        \"title\": \"Intelligent Steel Keyboard\",\n        \"description\": \"The Football Is Good For Training And Recreational Purposes\",\n        \"price\": \"442.00\",\n        \"stock\": 117,\n        \"code\": \"978-0-313-93026-3\",\n        \"category\": \"Electronics\",\n        \"status\": \"Not Available\",\n        \"images\": [\n            {\n                \"name\": \"whenever_supposing_hydrolyze.jpg\"\n            }\n        ]\n    },\n    {\n        \"id\": \"dd46da570fe3eb98bde7ecc6\",\n        \"title\": \"Incredible Soft Tuna\",\n        \"description\": \"The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J\",\n        \"price\": \"394.00\",\n        \"stock\": 177,\n        \"code\": \"978-0-391-65958-2\",\n        \"category\": \"Outdoors\",\n        \"status\": \"Available\",\n        \"images\": [\n            {\n                \"name\": \"that_loyally_inwardly.jpg\"\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Users Management",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/views/usersManagement",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"views",
+						"usersManagement"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Users Management",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/views/usersManagement",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"views",
+								"usersManagement"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "5648"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1610-dTFFQcM4G1sBcrO93UtISM7pD8U\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 Apr 2024 02:45:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\" />\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n        <title></title>\n    </head>\n    <body>\n        <div>\n            <h1>Usuarios</h1>\n            <section>\n                <p>Nombre: juan</p>\n                <p>Apellido: testing</p>\n                <p>Email: test@test.com</p>\n                <p>Edad: 20</p>\n                <p>Rol: premium</p>\n                <form id=\"modifyForm\" method=\"PUT\">\n                    <label for=\"putRol\">Modificar rol</label>\n                    <select name=\"modifyUser\" class=\"putRol\">\n                        <option value=\"\">Elegí un rol</option>\n                        <option value=\"premium\">Premium</option>\n                        <option value=\"admin\">Admin</option>\n                        <option value=\"user\">Usuario Normal</option>\n                    </select>\n                    <input type=\"button\" class=\"modifyRoleButton\" value=\"Cambiar rol\" data-id=\"66144c53ad06b2a28de0a58d\" />\n                </form>\n                <form id=\"deleteForm\" method=\"DELETE\">\n                    <input type=\"hidden\" name=\"deleteUser\" value=\"66144c53ad06b2a28de0a58d\" />\n                    <input type=\"button\" class=\"deleteUserButton\" value=\"Eliminar usuario\" data-id=\"66144c53ad06b2a28de0a58d\" />\n                </form>\n                <br>\n                <p>Nombre: juan</p>\n                <p>Apellido: admin</p>\n                <p>Email: admin@admin.com</p>\n                <p>Edad: 20</p>\n                <p>Rol: admin</p>\n                <form id=\"modifyForm\" method=\"PUT\">\n                    <label for=\"putRol\">Modificar rol</label>\n                    <select name=\"modifyUser\" class=\"putRol\">\n                        <option value=\"\">Elegí un rol</option>\n                        <option value=\"premium\">Premium</option>\n                        <option value=\"admin\">Admin</option>\n                        <option value=\"user\">Usuario Normal</option>\n                    </select>\n                    <input type=\"button\" class=\"modifyRoleButton\" value=\"Cambiar rol\" data-id=\"66144c5fad06b2a28de0a593\" />\n                </form>\n                <form id=\"deleteForm\" method=\"DELETE\">\n                    <input type=\"hidden\" name=\"deleteUser\" value=\"66144c5fad06b2a28de0a593\" />\n                    <input type=\"button\" class=\"deleteUserButton\" value=\"Eliminar usuario\" data-id=\"66144c5fad06b2a28de0a593\" />\n                </form>\n                <br>\n                <p>Nombre: admin</p>\n                <p>Apellido: Coder</p>\n                <p>Email: adminCoder@coder.com</p>\n                <p>Edad: 20</p>\n                <p>Rol: admin</p>\n                <form id=\"modifyForm\" method=\"PUT\">\n                    <label for=\"putRol\">Modificar rol</label>\n                    <select name=\"modifyUser\" class=\"putRol\">\n                        <option value=\"\">Elegí un rol</option>\n                        <option value=\"premium\">Premium</option>\n                        <option value=\"admin\">Admin</option>\n                        <option value=\"user\">Usuario Normal</option>\n                    </select>\n                    <input type=\"button\" class=\"modifyRoleButton\" value=\"Cambiar rol\" data-id=\"66144d6bad06b2a28de0a599\" />\n                </form>\n                <form id=\"deleteForm\" method=\"DELETE\">\n                    <input type=\"hidden\" name=\"deleteUser\" value=\"66144d6bad06b2a28de0a599\" />\n                    <input type=\"button\" class=\"deleteUserButton\" value=\"Eliminar usuario\" data-id=\"66144d6bad06b2a28de0a599\" />\n                </form>\n                <br>\n                <p>Nombre: juan</p>\n                <p>Apellido: mogliati</p>\n                <p>Email: mogliatijm@gmail.com</p>\n                <p>Edad: 20</p>\n                <p>Rol: premium</p>\n                <form id=\"modifyForm\" method=\"PUT\">\n                    <label for=\"putRol\">Modificar rol</label>\n                    <select name=\"modifyUser\" class=\"putRol\">\n                        <option value=\"\">Elegí un rol</option>\n                        <option value=\"premium\">Premium</option>\n                        <option value=\"admin\">Admin</option>\n                        <option value=\"user\">Usuario Normal</option>\n                    </select>\n                    <input type=\"button\" class=\"modifyRoleButton\" value=\"Cambiar rol\" data-id=\"6615abf7bfb1781478d335d2\" />\n                </form>\n                <form id=\"deleteForm\" method=\"DELETE\">\n                    <input type=\"hidden\" name=\"deleteUser\" value=\"6615abf7bfb1781478d335d2\" />\n                    <input type=\"button\" class=\"deleteUserButton\" value=\"Eliminar usuario\" data-id=\"6615abf7bfb1781478d335d2\" />\n                </form>\n                <br>\r\n  \n            </section>\n            <div>\n                <form method=\"GET\" action=\"http://localhost:8080/api/sessions/logout\">\n                    <span>Deseas cerrar sesión?</span>\n                    <input type=\"submit\" value=\"Cerrar Sesion\" />\n                </form>\n            </div>\n            <div>\n                <a href=\"http://localhost:8080/api/views/products\">Volver hacia el menu de productos</a>\n            </div>\n        </div>\n        <script>\r\n  function sendData() {\r\n    const userId = this.getAttribute('data-id');\r\n    const selectedRole = this.parentNode.querySelector('.putRol').value;\r\n    fetch(`http://localhost:8080/api/users/modifyRol?id=${userId}&rol=${selectedRole}`, {\r\n      method: 'PUT',\r\n      headers: {\r\n        'Content-Type': 'application/json',\r\n      },\r\n    })\r\n      .then(response => response.json())\r\n      .then(data => alert(\"Debes actualizar la pagina para ver el cambio\"))\r\n      .catch((error) => alert(\"Ocurrió un error inesperado\"))\r\n  }\r\n\r\n  function deleteUser() {\r\n    const userId = this.getAttribute('data-id');\r\n    fetch(`http://localhost:8080/api/users/user?id=${userId}`, {\r\n      method: 'DELETE',\r\n      headers: {\r\n        'Content-Type': 'application/json',\r\n      },\r\n    })\r\n      .then(response => response.json())\r\n      .then(data => alert(\"Usuario eliminado exitosamente. Actualice el sitio para ver el cambio\"))\r\n      .catch((error) => alert(\"Ocurrió un error al eliminar el usuario\"))\r\n  }\r\n\r\n  document.addEventListener('DOMContentLoaded', function () {\r\n    const modifyButtons = document.querySelectorAll('.modifyRoleButton');\r\n    modifyButtons.forEach(button => {\r\n      button.addEventListener('click', sendData);\r\n    });\r\n\r\n    const deleteButtons = document.querySelectorAll('.deleteUserButton');\r\n    deleteButtons.forEach(button => {\r\n      button.addEventListener('click', deleteUser);\r\n    });\r\n  });\r\n</script>\n    </body>\n</html>"
+				}
+			]
+		}
+	]
+}
