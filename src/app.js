@@ -39,7 +39,6 @@ app.use(
 );
 passportStrategy();
 app.use(passport.initialize());
-//app.use(passport.session());
 
 if (process.env.NODE_ENV !== "production") {
   const swaggerConfig = {
@@ -62,11 +61,20 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 app.use(express.static(__dirname + "/public"));
 app.use(addLogger);
-app.use("/api", router);
-app.get("/", (req, res) => {
-  logger.info("Welcome to the API");
-  return res.send({ message: "Welcome to the API" });
+app.get("/", async (req, res) => {
+  try {
+    if (req.cookies.token) return res.redirect("/api/views/products");
+    res.render("login", {});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: error });
+  }
 });
+app.use("/api", router);
+//app.get("/", (req, res) => {
+//  logger.info("Welcome to the API");
+//  return res.send({ message: "Welcome to the API" });
+//});
 
 app.use(errorHandlerMiddleware);
 
@@ -75,7 +83,6 @@ const httpServer = app.listen(PORT, () => {
 });
 
 //Socket
-//const productManager = new ProductManager();
 const messageManager = new MessageManager();
 
 const socketServer = new Server(httpServer);
@@ -90,33 +97,6 @@ socketServer.on("connection", (socket) => {
       console.log(error);
     }
   });
-
-  //socket.on("products", async () => {
-  //  try {
-  //    const products = await productManager.getProducts();
-  //    socket.emit("products", products);
-  //  } catch (error) {
-  //    console.log(error);
-  //  }
-  //});
-
-  //socket.on("addProduct", async (product) => {
-  //  try {
-  //    const products = await productManager.addProduct(product);
-  //    socket.emit("products", products);
-  //  } catch (error) {
-  //    console.log(error);
-  //  }
-  //});
-
-  //socket.on("deleteProduct", async (id) => {
-  //  try {
-  //    const products = await productManager.deleteProduct(id);
-  //    socket.emit("products", products);
-  //  } catch (error) {
-  //    console.log(error);
-  //  }
-  //});
 });
 
 //Database MongoDB
