@@ -68,7 +68,7 @@ user
     async (req, res, next) => {
       try {
         const { uid } = req.params;
-        const baseUrl = "http://localhost:8080/uploads";
+        const baseUrl = "/uploads";
 
         let documents = Object.keys(req.files)
           .map((fileKey) => {
@@ -181,7 +181,7 @@ user
   .delete(
     "/user",
     authMiddleware("jwt"),
-    authRolesMiddleware("admin"),
+    authRolesMiddleware(["admin"]),
     async (req, res, next) => {
       try {
         const { id } = req.query;

@@ -16,16 +16,16 @@
   </form>
 
   <div>
-    <form method="GET" action="http://localhost:8080/api/sessions/logout">
+    <form method="GET" action="/api/sessions/logout">
       <span>Deseas cerrar sesión?</span>
       <input type="submit" value="Cerrar Sesion" />
     </form>
   </div>
 
-  <a href="http://localhost:8080/api/sessions/current">Current</a>
+  <a href="/api/sessions/current">Current</a>
 
   <div>
-    <a href="http://localhost:8080/api/views/products">Volver hacia el menu de productos</a>
+    <a href="/api/views/products">Volver hacia el menu de productos</a>
   </div>
 </section>
 
@@ -33,7 +33,7 @@
   function sendData() {
     const role = document.getElementById('roleInput').value;
 
-    fetch('http://localhost:8080/api/users/premium/{{user.id}}', {
+    fetch('/api/users/premium/{{user.id}}', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

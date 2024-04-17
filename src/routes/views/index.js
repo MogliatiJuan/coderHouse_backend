@@ -6,26 +6,11 @@ import { authMiddleware, authRolesMiddleware } from "../../helpers/jwt.js";
 import { UserDto } from "../../dto/index.js";
 
 const router = Router();
-const productManager = new ProductManager();
 const cartManager = new CartManagerMongo();
-
-router.get("/", authMiddleware("jwt"), async (_request, response) => {
-  const products = await productManager.getProducts();
-  response.render("home", { products });
-});
-
-router.get(
-  "/realtimeproducts",
-  authMiddleware("jwt"),
-  async (_request, response) => {
-    const products = await productManager.getProducts();
-    response.render("realTimeProducts", { products });
-  }
-);
 
 router.get("/products", authMiddleware("jwt"), async (req, res) => {
   try {
-    if (!req.cookies.token) return res.redirect("/api/views/login");
+    if (!req.cookies.token) return res.redirect("/");
     const { page = 1, limit = 10 } = req.query;
     const products = await productsMongo.paginate(
       {},
@@ -57,7 +42,7 @@ router.get("/products", authMiddleware("jwt"), async (req, res) => {
 
 router.get("/carts/:cid", authMiddleware("jwt"), async (req, res) => {
   try {
-    if (!req.cookies.token) return res.redirect("/api/views/login");
+    if (!req.cookies.token) return res.redirect("/");
     const { cid } = req.params;
     let cart = await cartManager.getCartById(cid);
     let serializedProducts = JSON.stringify(cart?.products || []);
@@ -78,7 +63,7 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
-      if (!req.cookies.token) return res.redirect("/api/views/login");
+      if (!req.cookies.token) return res.redirect("/");
       res.render("profile", { user: req.user });
     } catch (error) {
       console.log(error);
@@ -115,7 +100,7 @@ router.get("/generate-new-password", async (req, res, next) => {
       })
       .catch((error) => {
         if (error.name === "TokenExpiredError") {
-          return res.redirect("/api/views/login");
+          return res.redirect("/");
         }
       });
   } catch (error) {
@@ -125,7 +110,7 @@ router.get("/generate-new-password", async (req, res, next) => {
 router.get(
   "/usersManagement",
   authMiddleware("jwt"),
-  authRolesMiddleware("admin"),
+  authRolesMiddleware(["admin"]),
   async (req, res, next) => {
     try {
       const users = await Users.find();
@@ -136,5 +121,14 @@ router.get(
     }
   }
 );
+router.get("/*", async (req, res) => {
+  try {
+    if (!req.cookies.token) return res.redirect("/");
+    res.redirect("/api/views/products");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error redirecting to products page");
+  }
+});
 
 export default router;

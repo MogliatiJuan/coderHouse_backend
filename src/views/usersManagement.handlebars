@@ -29,14 +29,14 @@
   </section>
 
   <div>
-    <form method="GET" action="http://localhost:8080/api/sessions/logout">
+    <form method="GET" action="/api/sessions/logout">
       <span>Deseas cerrar sesión?</span>
       <input type="submit" value="Cerrar Sesion" />
     </form>
   </div>
 
   <div>
-    <a href="http://localhost:8080/api/views/products">Volver hacia el menu de productos</a>
+    <a href="/api/views/products">Volver hacia el menu de productos</a>
   </div>
 </div>
 
@@ -44,7 +44,7 @@
   function sendData() {
     const userId = this.getAttribute('data-id');
     const selectedRole = this.parentNode.querySelector('.putRol').value;
-    fetch(`http://localhost:8080/api/users/modifyRol?id=${userId}&rol=${selectedRole}`, {
+    fetch(`/api/users/modifyRol?id=${userId}&rol=${selectedRole}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +57,7 @@
 
   function deleteUser() {
     const userId = this.getAttribute('data-id');
-    fetch(`http://localhost:8080/api/users/user?id=${userId}`, {
+    fetch(`/api/users/user?id=${userId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

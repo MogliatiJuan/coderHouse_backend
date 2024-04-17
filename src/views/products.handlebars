@@ -4,11 +4,11 @@
 <div>
   <h3>Bienvenido {{user.firstName}} {{user.lastName}}</h3>
   <span>Tu rol es: <b>{{user.role}}</b></span>
-  <p>Deseas visitar tu perfil? <a href="http://localhost:8080/api/views/profile">Dirígete desde aquí</a></p>
-  <p>Quieres visualizar tu carrito de compras? <a href="http://localhost:8080/api/views/carts/{{user.cart}}">Ir al
+  <p>Deseas visitar tu perfil? <a href="/api/views/profile">Dirígete desde aquí</a></p>
+  <p>Quieres visualizar tu carrito de compras? <a href="/api/views/carts/{{user.cart}}">Ir al
       carrito</a> </p>
   {{#if user.admin}}
-  <a href="http://localhost:8080/api/views/usersManagement">Ir a administrar usuarios</a>
+  <a href="/api/views/usersManagement">Ir a administrar usuarios</a>
   {{/if}}
 
 </div>
@@ -60,7 +60,7 @@
     <p>${{this.price}}</p>
     {{#if this.showForm}}
     <form method="POST" class="addProductToCart" data-id="{{this.id}}" data-cart="{{../user.cart}}"
-      action="http://localhost:8080/api/carts/{{../user.cart}}/product/{{this.id}}">
+      action="/api/carts/{{../user.cart}}/product/{{this.id}}">
       <button type="submit">Agregar al carrito</button>
     </form>
     {{/if}}
@@ -98,7 +98,7 @@
   </li>
   {{#if this.isNotFromOwner}}
   <form method="POST" class="addProductToCart" data-id="{{this.id}}" data-cart="{{../user.cart}}"
-    action="http://localhost:8080/api/carts/{{../user.cart}}/product/{{this.id}}">
+    action="/api/carts/{{../user.cart}}/product/{{this.id}}">
     <button type="submit">Agregar al carrito</button>
   </form>
   {{/if}}
@@ -111,10 +111,10 @@
 </ul>
 <a>{{products.page}}</a>
 {{#if products.hasPrevPage}}
-<a href="http://localhost:8080/api/views/products?page={{products.prevPage}}">Prev Page</a>
+<a href="/api/views/products?page={{products.prevPage}}">Prev Page</a>
 {{/if}}
 {{#if products.hasNextPage}}
-<a href="http://localhost:8080/api/views/products?page={{products.nextPage}}">Next Page</a>
+<a href="/api/views/products?page={{products.nextPage}}">Next Page</a>
 {{/if}}
 
 <script>
@@ -125,7 +125,7 @@
       const productId = form.getAttribute('data-id');
       const newTitle = form.querySelector('[name="title"]').value;
 
-      fetch(`http://localhost:8080/api/products/${productId}`, {
+      fetch(`/api/products/${productId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -148,7 +148,7 @@
       const form = e.target;
       const productId = form.getAttribute('data-id');
       const cartId = form.getAttribute('data-cart');
-      fetch(`http://localhost:8080/api/carts/${cartId}/product/${productId}`, {
+      fetch(`/api/carts/${cartId}/product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -169,7 +169,7 @@
       const productId = e.target.getAttribute('data-id');
 
       if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
-        fetch(`http://localhost:8080/api/products/${productId}`, {
+        fetch(`/api/products/${productId}`, {
           method: 'DELETE'
         })
           .then(response => {
@@ -194,8 +194,7 @@
       const stock = form.querySelector('[name="stock"]').value;
       const value = form.querySelector('[name="value"]').value;
       const code = form.querySelector('[name="code"]').value;
-
-      fetch(`http://localhost:8080/api/products/`, {
+      fetch(`/api/products/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -219,17 +218,15 @@
     // Verificar si el usuario ya tiene un cartId
     if (!userCartId) {
       // Si no tiene, crear un nuevo carrito
-      fetch("http://localhost:8080/api/carts", { method: "POST" })
+      fetch("/api/carts", { method: "POST" })
         .then(response => response.json())
         .then(data => {
-          // Aquí puedes manejar el nuevo cartId, por ejemplo, guardarlo en el usuario
           console.log('Nuevo carrito creado:', data);
         })
         .catch(error => {
           console.error('Error al crear el carrito:', error);
         });
     } else {
-      // Si ya tiene, podrías hacer algo con el cartId existente, como un GET para obtener detalles
       console.log('El usuario ya tiene un carrito:', userCartId);
     }
   });
