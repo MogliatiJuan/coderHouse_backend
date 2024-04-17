@@ -22,14 +22,13 @@ import { Users } from "../dao/models/index.js";
 import user from "./users.router.js";
 
 const router = new Router();
-
 router.use("/products", authMiddleware("jwt"), productRouter);
 router.use("/carts", authMiddleware("jwt"), cartRouter);
-router.use("/views", authMiddleware("jwt"), viewRouter);
+router.use("/views", viewRouter);
 router.use(
   "/chat",
   authMiddleware("jwt"), //agregar payload al req
-  authRolesMiddleware("user"), //verificar que solo rol 'user' ingrese
+  authRolesMiddleware(["user"]), //verificar que solo rol 'user' ingrese
   messageRouter
 );
 router.use("/sessions", sessionsRouter);

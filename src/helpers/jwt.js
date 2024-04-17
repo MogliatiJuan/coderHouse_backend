@@ -21,16 +21,17 @@ export const validateToken = (token) => {
 export const authMiddleware = (strategy) => (req, res, next) => {
   passport.authenticate(strategy, function (error, payload, info) {
     if (error) return next(error);
-    if (!payload) return res.redirect("/api/views/login");
+    if (!payload) return res.redirect("/");
     req.user = payload;
     next();
   })(req, res, next);
 };
 
-export const authRolesMiddleware = (role) => (req, res, next) => {
+export const authRolesMiddleware = (roles) => (req, res, next) => {
   if (!req.user) return res.status(401).send({ message: "Unauthorized" });
   const { role: userRole } = req.user;
-  if (userRole !== role) return res.status(403).send({ message: "Forbidden" });
+  if (!roles.includes(userRole))
+    return res.status(403).send({ message: "Forbidden" });
 
   next();
 };
