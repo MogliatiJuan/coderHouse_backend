@@ -43,13 +43,19 @@ router.post("/login", async (req, res) => {
 });
 router.get("/logout", authMiddleware("jwt"), logout);
 
-router.post(
-  "/register",
-  passport.authenticate("register", { failureRedirect: "/register" }),
-  (req, res) => {
-    res.redirect("/api/views/login");
-  }
-);
+router.post("/register", async (req, res, next) => {
+  passport.authenticate("register", async (err, user, info) => {
+    try {
+      if (err) {
+        throw new Error(err);
+      }
+      res.redirect("/");
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  })(req, res, next);
+});
+
 router.get("/profile", authMiddleware("jwt"), profile);
 router.get(
   "/github",
@@ -65,7 +71,7 @@ router.get(
 router.get(
   "/current",
   authMiddleware("jwt"),
-  authRolesMiddleware("admin"),
+  authRolesMiddleware(["admin"]),
   (req, res) => {
     res.send(new CurrentDTO(req.user));
   }
